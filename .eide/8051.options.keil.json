@@ -1,0 +1,22 @@
+{
+    "beforeBuildTasks": [],
+    "afterBuildTasks": [
+        {
+            "name": "Output bin",
+            "command": "\"${exeDir}\\hex2bin\" -b -c \"${outDir}\\${targetName}.hex\""
+        }
+    ],
+    "global": {
+        "ram-mode": "SMALL",
+        "rom-mode": "LARGE"
+    },
+    "c/cpp-compiler": {
+        "optimization-type": "SPEED",
+        "optimization-level": "level-8"
+    },
+    "asm-compiler": {},
+    "linker": {
+        "remove-unused": true
+    },
+    "version": 1
+}

@@ -1,0 +1,3 @@
+
+.\out\Keil_C51\main.o TO .\out\Keil_C51\project
+PRINT (.\out\Keil_C51\project.map) REMOVEUNUSED

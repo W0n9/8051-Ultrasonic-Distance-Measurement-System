@@ -1,0 +1,58 @@
+
+[40058581-5123-11CB-A829-A0046C18D2F8] : log at : 2020/8/17|13:35:37|GMT+0800
+[Warning] : not found sfr register 'P1' at line: 28
+Error: not found sfr register 'P1' at line: 28
+	at c:\Users\ThinkPad\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:164768
+	at c:\Users\ThinkPad\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:164965
+	at Array.forEach (<anonymous>)
+	at c:\Users\ThinkPad\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:164131
+	at c:\Users\ThinkPad\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:165238
+	at _executeContributedCommand (c:\Users\ThinkPad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:642:374)
+	at _.$executeContributedCommand (c:\Users\ThinkPad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:642:749)
+	at m._doInvokeHandler (c:\Users\ThinkPad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:819:926)
+	at m._invokeHandler (c:\Users\ThinkPad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:819:618)
+	at m._receiveRequest (c:\Users\ThinkPad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:818:252)
+	at m._receiveOneMessage (c:\Users\ThinkPad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:817:6)
+	at c:\Users\ThinkPad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:815:161
+	at l.fire (c:\Users\ThinkPad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:46:222)
+	at v.fire (c:\Users\ThinkPad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:239:494)
+	at c:\Users\ThinkPad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:1007:179
+	at l.fire (c:\Users\ThinkPad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:46:222)
+	at v.fire (c:\Users\ThinkPad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:239:494)
+	at t.PersistentProtocol._receiveMessage (c:\Users\ThinkPad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:244:17)
+	at c:\Users\ThinkPad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:241:67
+	at l.fire (c:\Users\ThinkPad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:46:222)
+	at p.acceptChunk (c:\Users\ThinkPad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:236:949)
+	at c:\Users\ThinkPad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:236:301
+	at Socket.t (c:\Users\ThinkPad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:245:572)
+	at Socket.emit (events.js:203:13)
+	at addChunk (_stream_readable.js:295:12)
+	at readableAddChunk (_stream_readable.js:276:11)
+	at Socket.Readable.push (_stream_readable.js:210:10)
+	at Pipe.onStreamRead (internal/stream_base_commons.js:166:17)
+
+
+
+[40058581-5123-11CB-A829-A0046C18D2F8] : log at : 2020/8/17|13:54:36|GMT+0800
+
+
+
+[786EE47C-7CA7-11E7-A7A5-DF606AC51800] : log at : 2020/8/17|18:18:47|GMT+0800
+
+
+
+[786EE47C-7CA7-11E7-A7A5-DF606AC51800] : log at : 2020/8/17|18:21:00|GMT+0800
+
+
+
+[786EE47C-7CA7-11E7-A7A5-DF606AC51800] : log at : 2020/8/17|20:35:13|GMT+0800
+
+
+
+[786EE47C-7CA7-11E7-A7A5-DF606AC51800] : log at : 2020/8/17|22:34:03|GMT+0800
+
+
+
+[40058581-5123-11CB-A829-A0046C18D2F8] : log at : 2020/8/18|09:49:39|GMT+0800
+
+

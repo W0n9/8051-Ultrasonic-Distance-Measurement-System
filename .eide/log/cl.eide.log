@@ -1,0 +1,221 @@
+
+[40058581-5123-11CB-A829-A0046C18D2F8] : log at : 2020/8/17|13:35:37|GMT+0800
+[Warning] : not found sfr register 'P1' at line: 28
+Error: not found sfr register 'P1' at line: 28
+	at c:\Users\ThinkPad\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:164768
+	at c:\Users\ThinkPad\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:164965
+	at Array.forEach (<anonymous>)
+	at c:\Users\ThinkPad\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:164131
+	at c:\Users\ThinkPad\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:165238
+	at _executeContributedCommand (c:\Users\ThinkPad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:642:374)
+	at _.$executeContributedCommand (c:\Users\ThinkPad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:642:749)
+	at m._doInvokeHandler (c:\Users\ThinkPad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:819:926)
+	at m._invokeHandler (c:\Users\ThinkPad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:819:618)
+	at m._receiveRequest (c:\Users\ThinkPad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:818:252)
+	at m._receiveOneMessage (c:\Users\ThinkPad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:817:6)
+	at c:\Users\ThinkPad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:815:161
+	at l.fire (c:\Users\ThinkPad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:46:222)
+	at v.fire (c:\Users\ThinkPad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:239:494)
+	at c:\Users\ThinkPad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:1007:179
+	at l.fire (c:\Users\ThinkPad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:46:222)
+	at v.fire (c:\Users\ThinkPad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:239:494)
+	at t.PersistentProtocol._receiveMessage (c:\Users\ThinkPad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:244:17)
+	at c:\Users\ThinkPad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:241:67
+	at l.fire (c:\Users\ThinkPad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:46:222)
+	at p.acceptChunk (c:\Users\ThinkPad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:236:949)
+	at c:\Users\ThinkPad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:236:301
+	at Socket.t (c:\Users\ThinkPad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:245:572)
+	at Socket.emit (events.js:203:13)
+	at addChunk (_stream_readable.js:295:12)
+	at readableAddChunk (_stream_readable.js:276:11)
+	at Socket.Readable.push (_stream_readable.js:210:10)
+	at Pipe.onStreamRead (internal/stream_base_commons.js:166:17)
+
+
+
+[40058581-5123-11CB-A829-A0046C18D2F8] : log at : 2020/8/17|13:54:36|GMT+0800
+
+
+
+[786EE47C-7CA7-11E7-A7A5-DF606AC51800] : log at : 2020/8/17|18:18:47|GMT+0800
+
+
+
+[786EE47C-7CA7-11E7-A7A5-DF606AC51800] : log at : 2020/8/17|18:21:00|GMT+0800
+
+
+
+[786EE47C-7CA7-11E7-A7A5-DF606AC51800] : log at : 2020/8/17|20:35:13|GMT+0800
+
+
+
+[786EE47C-7CA7-11E7-A7A5-DF606AC51800] : log at : 2020/8/17|22:34:03|GMT+0800
+
+
+
+[786EE47C-7CA7-11E7-A7A5-DF606AC51800] : log at : 2020/8/18|18:18:31|GMT+0800
+
+
+
+[786EE47C-7CA7-11E7-A7A5-DF606AC51800] : log at : 2020/8/18|18:24:32|GMT+0800
+
+
+
+[786EE47C-7CA7-11E7-A7A5-DF606AC51800] : log at : 2020/8/18|20:35:31|GMT+0800
+
+
+
+[40058581-5123-11CB-A829-A0046C18D2F8] : log at : 2020/8/19|11:11:50|GMT+0800
+[Hidden] : Failed to connect 'api.github.com/repos/github0null/ARM_Builder_V6/contents/ARM_Builder_V6'
+Error: read ECONNRESET
+	at TLSWrap.onStreamRead (internal/stream_base_commons.js:183:27)
+
+
+
+[40058581-5123-11CB-A829-A0046C18D2F8] : log at : 2020/8/19|13:46:55|GMT+0800
+
+
+
+[786EE47C-7CA7-11E7-A7A5-DF606AC51800] : log at : 2020/8/19|22:04:38|GMT+0800
+
+
+
+[40058581-5123-11CB-A829-A0046C18D2F8] : log at : 2020/8/20|09:38:05|GMT+0800
+[Hidden] : Failed to connect 'api.github.com/repos/github0null/ARM_Builder_V6/contents/ARM_Builder_V6'
+Error: read ECONNRESET
+	at TLSWrap.onStreamRead (internal/stream_base_commons.js:183:27)
+
+
+
+[40058581-5123-11CB-A829-A0046C18D2F8] : log at : 2020/8/20|16:12:45|GMT+0800
+[Error] : EBUSY: resource busy or locked, open 'c:\Users\ThinkPad\OneDrive\文档\生产实习\Product\project\.vscode\c_cpp_properties.json'
+Error: EBUSY: resource busy or locked, open 'c:\Users\ThinkPad\OneDrive\文档\生产实习\Product\project\.vscode\c_cpp_properties.json'
+	at Object.openSync (fs.js:447:3)
+	at Object.func (electron/js2c/asar.js:140:31)
+	at Object.func [as openSync] (electron/js2c/asar.js:140:31)
+	at Object.writeFileSync (fs.js:1206:35)
+	at r.Write (c:\Users\ThinkPad\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:3466)
+	at t.CppConfiguration.Save (c:\Users\ThinkPad\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:28413)
+	at t.CppConfiguration.Save (c:\Users\ThinkPad\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:56444)
+	at M.UpdateCppConfig (c:\Users\ThinkPad\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:93696)
+	at M.onPrjConfigChanged (c:\Users\ThinkPad\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:97792)
+	at EventEmitter.<anonymous> (c:\Users\ThinkPad\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:94385)
+	at EventEmitter.emit (events.js:203:13)
+	at w.endCachedEvents (c:\Users\ThinkPad\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:28015)
+	at d.ClearObsoleteComponentDependence (c:\Users\ThinkPad\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:80864)
+	at d.Refresh (c:\Users\ThinkPad\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:76736)
+	at M.AfterLoad (c:\Users\ThinkPad\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:95307)
+	at M.AfterLoad (c:\Users\ThinkPad\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:99873)
+	at M.Load (c:\Users\ThinkPad\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:88758)
+	at P._OpenProject (c:\Users\ThinkPad\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:331369)
+	at EventEmitter.<anonymous> (c:\Users\ThinkPad\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:324276)
+	at Object.onceWrapper (events.js:291:20)
+	at EventEmitter.emit (events.js:203:13)
+	at Function.emit (c:\Users\ThinkPad\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:4446)
+	at EventEmitter.<anonymous> (c:\Users\ThinkPad\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:162112)
+	at EventEmitter.emit (events.js:203:13)
+	at Function.emit (c:\Users\ThinkPad\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:4446)
+	at P.LoadWorkspaceProject (c:\Users\ThinkPad\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:324325)
+	at new P (c:\Users\ThinkPad\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:322926)
+	at new t.ProjectExplorer (c:\Users\ThinkPad\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:335892)
+	at t.activate (c:\Users\ThinkPad\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:165816)
+	at Function._callActivateOptional (c:\Users\ThinkPad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:877:509)
+	at Function._callActivate (c:\Users\ThinkPad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:877:160)
+	at c:\Users\ThinkPad\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:875:492
+	at processTicksAndRejections (internal/process/task_queues.js:85:5)
+	at async Promise.all (index 7)
+	at async Promise.all (index 0)
+[Hidden] : Failed to connect 'api.github.com/repos/github0null/ARM_Builder_V6/contents/ARM_Builder_V6'
+Error: read ECONNRESET
+	at TLSWrap.onStreamRead (internal/stream_base_commons.js:183:27)
+
+
+
+[786EE47C-7CA7-11E7-A7A5-DF606AC51800] : log at : 2020/8/20|20:55:03|GMT+0800
+
+
+
+[40058581-5123-11CB-A829-A0046C18D2F8] : log at : 2020/8/21|09:12:00|GMT+0800
+
+
+
+[40058581-5123-11CB-A829-A0046C18D2F8] : log at : 2020/8/21|09:40:58|GMT+0800
+
+
+
+[40058581-5123-11CB-A829-A0046C18D2F8] : log at : 2020/8/21|13:55:16|GMT+0800
+
+
+
+[786EE47C-7CA7-11E7-A7A5-DF606AC51800] : log at : 2020/8/21|22:12:02|GMT+0800
+[Error] : EBUSY: resource busy or locked, open 'c:\Users\hcy67\OneDrive\文档\生产实习\Product\project\.vscode\c_cpp_properties.json'
+Error: EBUSY: resource busy or locked, open 'c:\Users\hcy67\OneDrive\文档\生产实习\Product\project\.vscode\c_cpp_properties.json'
+	at Object.openSync (fs.js:447:3)
+	at Object.func (electron/js2c/asar.js:140:31)
+	at Object.func [as openSync] (electron/js2c/asar.js:140:31)
+	at Object.writeFileSync (fs.js:1206:35)
+	at r.Write (c:\Users\hcy67\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:3466)
+	at t.CppConfiguration.Save (c:\Users\hcy67\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:28413)
+	at t.CppConfiguration.Save (c:\Users\hcy67\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:56444)
+	at M.UpdateCppConfig (c:\Users\hcy67\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:93696)
+	at M.onPrjConfigChanged (c:\Users\hcy67\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:97792)
+	at EventEmitter.<anonymous> (c:\Users\hcy67\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:94385)
+	at EventEmitter.emit (events.js:203:13)
+	at w.endCachedEvents (c:\Users\hcy67\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:28015)
+	at d.ClearObsoleteComponentDependence (c:\Users\hcy67\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:80864)
+	at d.Refresh (c:\Users\hcy67\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:76736)
+	at M.AfterLoad (c:\Users\hcy67\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:95307)
+	at M.AfterLoad (c:\Users\hcy67\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:99873)
+	at M.Load (c:\Users\hcy67\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:88758)
+	at P._OpenProject (c:\Users\hcy67\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:331369)
+	at EventEmitter.<anonymous> (c:\Users\hcy67\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:324276)
+	at Object.onceWrapper (events.js:291:20)
+	at EventEmitter.emit (events.js:203:13)
+	at Function.emit (c:\Users\hcy67\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:4446)
+	at EventEmitter.<anonymous> (c:\Users\hcy67\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:162112)
+	at EventEmitter.emit (events.js:203:13)
+	at Function.emit (c:\Users\hcy67\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:4446)
+	at P.LoadWorkspaceProject (c:\Users\hcy67\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:324325)
+	at new P (c:\Users\hcy67\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:322926)
+	at new t.ProjectExplorer (c:\Users\hcy67\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:335892)
+	at t.activate (c:\Users\hcy67\.vscode\extensions\cl.eide-1.18.0\dist\extension.js:1:165816)
+	at Function._callActivateOptional (c:\Users\hcy67\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:877:509)
+	at Function._callActivate (c:\Users\hcy67\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:877:160)
+	at c:\Users\hcy67\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\services\extensions\node\extensionHostProcess.js:875:492
+	at processTicksAndRejections (internal/process/task_queues.js:85:5)
+	at async Promise.all (index 7)
+	at async Promise.all (index 0)
+
+
+
+[786EE47C-7CA7-11E7-A7A5-DF606AC51800] : log at : 2020/8/21|22:13:27|GMT+0800
+
+
+
+[786EE47C-7CA7-11E7-A7A5-DF606AC51800] : log at : 2020/8/21|22:29:40|GMT+0800
+
+
+
+[40058581-5123-11CB-A829-A0046C18D2F8] : log at : 2020/8/22|14:47:00|GMT+0800
+
+
+
+[40058581-5123-11CB-A829-A0046C18D2F8] : log at : 2020/8/22|14:50:50|GMT+0800
+
+
+
+[40058581-5123-11CB-A829-A0046C18D2F8] : log at : 2020/8/23|14:06:07|GMT+0800
+
+
+
+[786EE47C-7CA7-11E7-A7A5-DF606AC51800] : log at : 2020/8/23|22:36:48|GMT+0800
+
+
+
+[786EE47C-7CA7-11E7-A7A5-DF606AC51800] : log at : 2020/8/23|22:39:24|GMT+0800
+
+
+
+[786EE47C-7CA7-11E7-A7A5-DF606AC51800] : log at : 2020/8/23|22:47:30|GMT+0800
+
+

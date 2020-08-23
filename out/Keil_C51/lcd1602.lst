@@ -1,0 +1,409 @@
+C51 COMPILER V9.59.0.0   LCD1602                                                           08/21/2020 22:16:56 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE LCD1602
+OBJECT MODULE PLACED IN .\out\Keil_C51\lcd1602.o
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.exe .\SRC\LCD1602.C CODE PRINT(.\out\Keil_C51\lcd1602.lst) OMF2 TABS(2) OPTI
+                    -MIZE(8,SPEED) SMALL ROM(LARGE) INCDIR(.\dependence;.\src) DEFINE(__UVISION_VERSION) OBJECT(.\out\Keil_C51\lcd1602.o)
+
+line level    source
+
+   1          
+   2          /**********请直接使用fin_display()************/
+   3          
+   4          #include<reg52.h>
+   5          
+   6          typedef unsigned char uint8_t;
+   7          typedef unsigned int uint16_t;
+   8          typedef unsigned long uint32_t;
+   9          
+  10          typedef signed char int8_t;
+  11          typedef signed int int16_t;
+  12          typedef signed long int32_t;
+  13          
+  14          sbit lcden=P3^4;      //使能端:en=1,读取；en=下降沿，执行指令
+  15          sbit lcdrs=P3^5;      //数据/指令选择端：rs=1，为数据；rs=0，为指令。
+  16          sbit lcdrw=P3^6;    //读写控制端：rw=1,读；rw=0,写
+  17          // int W1,W2,W3,W4,W5,W6,W7;
+  18          
+  19          /***********延时函数******************/
+  20          void delayms(uint16_t time)
+  21          {
+  22   1         uint16_t i;
+  23   1         for(;time>0;time--)
+  24   1         {
+  25   2          for(i=0;i<124;i++)
+  26   2          {;}
+  27   2         }
+  28   1      }
+  29          
+  30          /*******************lcd写入指令子函数********************/
+  31          void lcd_wcom(uint8_t com)
+  32          {
+  33   1        lcdrs=0;      // rs=0,指令
+  34   1        lcdrw=0;    // rw=0,写入
+  35   1        P0=com;       // 把指令送入P0口
+  36   1        delayms(5);   //延时一小会 ，让1602准备接收数据--------代替忙检测函数
+  37   1        lcden=1;    //使能端 下降沿，把指令送入1602的8为数据口
+  38   1        delayms(2); 
+  39   1        lcden=0;
+  40   1      }
+  41          
+  42          /************************lcd写入数据函数************************/
+  43          void lcd_wdata (uint8_t dat)
+  44          {
+  45   1        lcdrs=1;      // RS=1,数据
+  46   1        lcdrw=0;    // rw=0,写入
+  47   1        P0=dat;       // 把要显示的数据送入P0口
+  48   1        delayms(5);   //延时一小会 ，让1602准备接收数据--------代替忙检测函数
+  49   1        lcden=1;    //使能端 下降沿，把指令送入1602的8为数据口
+  50   1        delayms(2);
+  51   1        lcden=0;
+  52   1      }
+  53          
+  54          /******************LCD初始化子函数****************************/
+C51 COMPILER V9.59.0.0   LCD1602                                                           08/21/2020 22:16:56 PAGE 2   
+
+  55          void lcd_init()            //初始化，写入指令
+  56          {
+  57   1        lcdrw=0;             //rw=0,写    
+  58   1        lcden=1;  
+  59   1        lcden=0;               //下降沿，执行指令
+  60   1        lcd_wcom(0x38);        //写指令,8位数据，双列
+  61   1        lcd_wcom(0x0c);        //开启显示屏，关光标，光标不闪烁
+  62   1          lcd_wcom(0x06);        //显示地址递增，即写一个数据后，显示位置右移一位
+  63   1        lcd_wcom(0x01);        //清屏
+  64   1      }
+  65          
+  66          /**********************LCD显示子函数****************************/
+  67          //i设置字符位置，j是显示的数字
+  68          void lcd_display(uint16_t i, uint16_t j)
+  69          {
+  70   1         
+  71   1        lcd_wcom(0x80+i-1);
+  72   1        switch(j)
+  73   1         {
+  74   2          case 0: lcd_wdata('0');delayms(2); break;
+  75   2          case 1: lcd_wdata('1');delayms(2); break;
+  76   2          case 2: lcd_wdata('2');delayms(2); break;
+  77   2          case 3: lcd_wdata('3');delayms(2); break;
+  78   2          case 4: lcd_wdata('4');delayms(2); break;
+  79   2          case 5: lcd_wdata('5');delayms(2); break;
+  80   2          case 6: lcd_wdata('6');delayms(2); break;
+  81   2          case 7: lcd_wdata('7');delayms(2); break;
+  82   2          case 8: lcd_wdata('8');delayms(2); break;
+  83   2          case 9: lcd_wdata('9');delayms(2); break;
+  84   2          default: lcd_wdata('.');delayms(2); break;
+  85   2             
+  86   2        }  
+  87   1        
+  88   1      }
+  89          /*********************最终显示函数*************************************/
+  90          //abc分别为百十个位，使用前需lcd_init()初始化
+  91          void fin_display(uint16_t a, b, c)
+  92          { lcd_display(5,5);
+  93   1        lcd_display(4,'.');
+  94   1        lcd_display(3,c);
+  95   1        lcd_display(2,b); 
+  96   1          lcd_display(1,a);  
+  97   1      }
+  98          /**************************主函数*******************************/
+  99          // void main()
+ 100          // {   
+ 101          //  lcd_init();//初始化
+ 102          //  while(1)
+ 103          //     {
+ 104          //  //lcd_display(10,W1); 
+ 105          //  //lcd_display(9,':'); 
+ 106          //  // lcd_display(8,1);
+ 107          //  // lcd_display(7,W3);
+ 108          //    // lcd_display(6,':');
+ 109          //    // lcd_display(5,W4); 
+ 110          //    // lcd_display(4,W5);
+ 111          //    lcd_display(10,3);
+ 112          //  lcd_display(2,2); 
+ 113          //     lcd_display(1,1);   
+ 114          //  }          
+ 115          // }
+ 116          
+C51 COMPILER V9.59.0.0   LCD1602                                                           08/21/2020 22:16:56 PAGE 3   
+
+ 117          
+C51 COMPILER V9.59.0.0   LCD1602                                                           08/21/2020 22:16:56 PAGE 4   
+
+ASSEMBLY LISTING OF GENERATED OBJECT CODE
+
+
+             ; FUNCTION L?0039 (BEGIN)
+0000 C2B6              CLR     lcdrw
+0002 8F80              MOV     P0,R7
+0004 7F05              MOV     R7,#05H
+0006 7E00              MOV     R6,#00H
+0008 120000      R     LCALL   _delayms
+000B D2B4              SETB    lcden
+000D         L?0040:
+000D 7F02              MOV     R7,#02H
+000F 7E00              MOV     R6,#00H
+             ; FUNCTION _delayms (BEGIN)
+                                           ; SOURCE LINE # 20
+;---- Variable 'time' assigned to Register 'R6/R7' ----
+                                           ; SOURCE LINE # 21
+                                           ; SOURCE LINE # 23
+0011         ?C0001:
+0011 D3                SETB    C
+0012 EF                MOV     A,R7
+0013 9400              SUBB    A,#00H
+0015 EE                MOV     A,R6
+0016 9400              SUBB    A,#00H
+0018 4015              JC      ?C0007
+                                           ; SOURCE LINE # 24
+                                           ; SOURCE LINE # 25
+;---- Variable 'i' assigned to Register 'R4/R5' ----
+001A E4                CLR     A
+001B FD                MOV     R5,A
+001C FC                MOV     R4,A
+001D         ?C0004:
+                                           ; SOURCE LINE # 26
+001D 0D                INC     R5
+001E BD0001            CJNE    R5,#00H,?C0025
+0021 0C                INC     R4
+0022         ?C0025:
+0022 ED                MOV     A,R5
+0023 647C              XRL     A,#07CH
+0025 4C                ORL     A,R4
+0026 70F5              JNZ     ?C0004
+                                           ; SOURCE LINE # 27
+0028         ?C0003:
+0028 EF                MOV     A,R7
+0029 1F                DEC     R7
+002A 70E5              JNZ     ?C0001
+002C 1E                DEC     R6
+002D         ?C0026:
+002D 80E2              SJMP    ?C0001
+                                           ; SOURCE LINE # 28
+002F         ?C0007:
+002F 22                RET     
+             ; FUNCTION _delayms (END)
+
+             ; FUNCTION _lcd_wcom (BEGIN)
+                                           ; SOURCE LINE # 31
+;---- Variable 'com' assigned to Register 'R7' ----
+                                           ; SOURCE LINE # 32
+                                           ; SOURCE LINE # 33
+0000 C2B5              CLR     lcdrs
+                                           ; SOURCE LINE # 34
+                                           ; SOURCE LINE # 35
+C51 COMPILER V9.59.0.0   LCD1602                                                           08/21/2020 22:16:56 PAGE 5   
+
+                                           ; SOURCE LINE # 36
+                                           ; SOURCE LINE # 37
+                                           ; SOURCE LINE # 38
+0002 120000      R     LCALL   L?0039
+                                           ; SOURCE LINE # 39
+0005 C2B4              CLR     lcden
+                                           ; SOURCE LINE # 40
+0007 22                RET     
+             ; FUNCTION _lcd_wcom (END)
+
+             ; FUNCTION _lcd_wdata (BEGIN)
+                                           ; SOURCE LINE # 43
+;---- Variable 'dat' assigned to Register 'R7' ----
+                                           ; SOURCE LINE # 44
+                                           ; SOURCE LINE # 45
+0000 D2B5              SETB    lcdrs
+                                           ; SOURCE LINE # 46
+                                           ; SOURCE LINE # 47
+                                           ; SOURCE LINE # 48
+                                           ; SOURCE LINE # 49
+                                           ; SOURCE LINE # 50
+0002 120000      R     LCALL   L?0039
+                                           ; SOURCE LINE # 51
+0005 C2B4              CLR     lcden
+                                           ; SOURCE LINE # 52
+0007 22                RET     
+             ; FUNCTION _lcd_wdata (END)
+
+             ; FUNCTION lcd_init (BEGIN)
+                                           ; SOURCE LINE # 55
+                                           ; SOURCE LINE # 56
+                                           ; SOURCE LINE # 57
+0000 C2B6              CLR     lcdrw
+                                           ; SOURCE LINE # 58
+0002 D2B4              SETB    lcden
+                                           ; SOURCE LINE # 59
+0004 C2B4              CLR     lcden
+                                           ; SOURCE LINE # 60
+0006 7F38              MOV     R7,#038H
+0008 120000      R     LCALL   _lcd_wcom
+                                           ; SOURCE LINE # 61
+000B 7F0C              MOV     R7,#0CH
+000D 120000      R     LCALL   _lcd_wcom
+                                           ; SOURCE LINE # 62
+0010 7F06              MOV     R7,#06H
+0012 120000      R     LCALL   _lcd_wcom
+                                           ; SOURCE LINE # 63
+0015 7F01              MOV     R7,#01H
+0017 020000      R     LJMP    _lcd_wcom
+             ; FUNCTION lcd_init (END)
+
+             ; FUNCTION _lcd_display (BEGIN)
+                                           ; SOURCE LINE # 68
+;---- Variable 'j' assigned to Register 'R2/R3' ----
+0000 AB05              MOV     R3,AR5
+0002 AA04              MOV     R2,AR4
+;---- Variable 'i' assigned to Register 'R6/R7' ----
+                                           ; SOURCE LINE # 69
+                                           ; SOURCE LINE # 71
+0004 EF                MOV     A,R7
+0005 247F              ADD     A,#07FH
+0007 FF                MOV     R7,A
+C51 COMPILER V9.59.0.0   LCD1602                                                           08/21/2020 22:16:56 PAGE 6   
+
+0008 120000      R     LCALL   _lcd_wcom
+                                           ; SOURCE LINE # 72
+000B EA                MOV     A,R2
+000C 7053              JNZ     ?C0022
+000E EB                MOV     A,R3
+000F B40A00            CJNE    A,#0AH,?C0027
+0012         ?C0027:
+0012 504D              JNC     ?C0022
+0014 900000      R     MOV     DPTR,#?C0028
+0017 F8                MOV     R0,A
+0018 28                ADD     A,R0
+0019 28                ADD     A,R0
+001A 73                JMP     @A+DPTR
+001B         ?C0028:
+001B 020000      R     LJMP    ?C0012
+001E 020000      R     LJMP    ?C0013
+0021 020000      R     LJMP    ?C0014
+0024 020000      R     LJMP    ?C0015
+0027 020000      R     LJMP    ?C0016
+002A 020000      R     LJMP    ?C0017
+002D 020000      R     LJMP    ?C0018
+0030 020000      R     LJMP    ?C0019
+0033 020000      R     LJMP    ?C0020
+0036 020000      R     LJMP    ?C0021
+                                           ; SOURCE LINE # 73
+                                           ; SOURCE LINE # 74
+0039         ?C0012:
+0039 7F30              MOV     R7,#030H
+003B 8026              SJMP    ?C0038
+                                           ; SOURCE LINE # 75
+003D         ?C0013:
+003D 7F31              MOV     R7,#031H
+003F         ?C0029:
+003F 8022              SJMP    ?C0038
+                                           ; SOURCE LINE # 76
+0041         ?C0014:
+0041 7F32              MOV     R7,#032H
+0043         ?C0030:
+0043 801E              SJMP    ?C0038
+                                           ; SOURCE LINE # 77
+0045         ?C0015:
+0045 7F33              MOV     R7,#033H
+0047         ?C0031:
+0047 801A              SJMP    ?C0038
+                                           ; SOURCE LINE # 78
+0049         ?C0016:
+0049 7F34              MOV     R7,#034H
+004B         ?C0032:
+004B 8016              SJMP    ?C0038
+                                           ; SOURCE LINE # 79
+004D         ?C0017:
+004D 7F35              MOV     R7,#035H
+004F         ?C0033:
+004F 8012              SJMP    ?C0038
+                                           ; SOURCE LINE # 80
+0051         ?C0018:
+0051 7F36              MOV     R7,#036H
+0053         ?C0034:
+0053 800E              SJMP    ?C0038
+                                           ; SOURCE LINE # 81
+0055         ?C0019:
+0055 7F37              MOV     R7,#037H
+C51 COMPILER V9.59.0.0   LCD1602                                                           08/21/2020 22:16:56 PAGE 7   
+
+0057         ?C0035:
+0057 800A              SJMP    ?C0038
+                                           ; SOURCE LINE # 82
+0059         ?C0020:
+0059 7F38              MOV     R7,#038H
+005B         ?C0036:
+005B 8006              SJMP    ?C0038
+                                           ; SOURCE LINE # 83
+005D         ?C0021:
+005D 7F39              MOV     R7,#039H
+005F         ?C0037:
+005F 8002              SJMP    ?C0038
+                                           ; SOURCE LINE # 84
+0061         ?C0022:
+0061 7F2E              MOV     R7,#02EH
+0063         ?C0038:
+0063 120000      R     LCALL   _lcd_wdata
+0066 120000      R     LCALL   L?0040
+                                           ; SOURCE LINE # 86
+                                           ; SOURCE LINE # 88
+0069         ?C0023:
+0069 22                RET     
+             ; FUNCTION _lcd_display (END)
+
+             ; FUNCTION _fin_display (BEGIN)
+                                           ; SOURCE LINE # 91
+0000 8E00        R     MOV     a,R6
+0002 8F00        R     MOV     a+01H,R7
+0004 8C00        R     MOV     b,R4
+0006 8D00        R     MOV     b+01H,R5
+0008 8A00        R     MOV     c,R2
+000A 8B00        R     MOV     c+01H,R3
+                                           ; SOURCE LINE # 92
+000C 7D05              MOV     R5,#05H
+000E 7C00              MOV     R4,#00H
+0010 7F05              MOV     R7,#05H
+0012 7E00              MOV     R6,#00H
+0014 120000      R     LCALL   _lcd_display
+                                           ; SOURCE LINE # 93
+0017 7D2E              MOV     R5,#02EH
+0019 7C00              MOV     R4,#00H
+001B 7F04              MOV     R7,#04H
+001D 7E00              MOV     R6,#00H
+001F 120000      R     LCALL   _lcd_display
+                                           ; SOURCE LINE # 94
+0022 AD00        R     MOV     R5,c+01H
+0024 AC00        R     MOV     R4,c
+0026 7F03              MOV     R7,#03H
+0028 7E00              MOV     R6,#00H
+002A 120000      R     LCALL   _lcd_display
+                                           ; SOURCE LINE # 95
+002D AD00        R     MOV     R5,b+01H
+002F AC00        R     MOV     R4,b
+0031 7F02              MOV     R7,#02H
+0033 7E00              MOV     R6,#00H
+0035 120000      R     LCALL   _lcd_display
+                                           ; SOURCE LINE # 96
+0038 AD00        R     MOV     R5,a+01H
+003A AC00        R     MOV     R4,a
+003C 7F01              MOV     R7,#01H
+003E 7E00              MOV     R6,#00H
+0040 020000      R     LJMP    _lcd_display
+C51 COMPILER V9.59.0.0   LCD1602                                                           08/21/2020 22:16:56 PAGE 8   
+
+             ; FUNCTION _fin_display (END)
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    263    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       6
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+   EDATA SIZE       =   ----    ----
+   HDATA SIZE       =   ----    ----
+   XDATA CONST SIZE =   ----    ----
+   FAR CONST SIZE   =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
