@@ -4,7 +4,7 @@
             "name": "win32",
             "includePath": [
                 ".\\dependence",
-                ".\\..\\..\\..\\..\\..\\..\\..\\Keil_v5\\C51\\INC",
+                ".\\..\\..\\..\\..\\Keil_v5\\C51\\INC",
                 ".\\dependence\\build-in\\toolchain",
                 ".\\src"
             ],
@@ -38,7 +38,7 @@
                 "limitSymbolsToIncludedHeaders": true,
                 "path": [
                     ".\\dependence\\*",
-                    ".\\..\\..\\..\\..\\..\\..\\..\\Keil_v5\\C51\\INC\\*",
+                    ".\\..\\..\\..\\..\\Keil_v5\\C51\\INC\\*",
                     ".\\dependence\\build-in\\toolchain\\*",
                     ".\\src\\*"
                 ]
