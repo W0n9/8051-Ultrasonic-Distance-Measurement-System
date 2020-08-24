@@ -1,4 +1,4 @@
-LX51 LINKER/LOCATER V4.66.93.0                                                          08/24/2020  21:37:11  PAGE 1
+LX51 LINKER/LOCATER V4.66.93.0                                                          08/24/2020  21:52:14  PAGE 1
 
 
 LX51 LINKER/LOCATER V4.66.93.0, INVOKED BY:
@@ -39,7 +39,7 @@ ACTIVE MEMORY CLASSES OF MODULE:  .\OUT\KEIL_C51\8051-ULTRASONIC-DISTANCE-MEASUR
 
 BASE        START       END         USED      MEMORY CLASS
 ==========================================================
-C:000000H   C:000000H   C:00FFFFH   00072DH   CODE
+C:000000H   C:000000H   C:00FFFFH   00070BH   CODE
 I:000000H   I:000000H   I:00007FH   000034H   DATA
 C:000000H   C:000000H   C:00FFFFH   000036H   CONST
 I:000000H   I:000000H   I:0000FFH   000001H   IDATA
@@ -59,29 +59,29 @@ START     STOP      LENGTH    ALIGN  RELOC    MEMORY CLASS   SEGMENT NAME
 * * * * * * * * * * *   C O D E   M E M O R Y   * * * * * * * * * * * * *
 000000H   000002H   000003H   ---    OFFS..   CODE           ?CO??C_STARTUP?0
 000003H   0000B5H   0000B3H   BYTE   UNIT     CODE           ?PR?MAIN?MAIN
-0000B6H   000138H   000083H   BYTE   UNIT     CODE           ?PR?_DISPLAYLENGTH?MAIN
-000139H   0001AFH   000077H   BYTE   UNIT     CODE           ?PR?METERBYTRIG?MAIN
-0001B0H   000219H   00006AH   BYTE   UNIT     CODE           ?PR?_LCD_DISPLAY?MAIN
-00021AH   000276H   00005DH   BYTE   UNIT     CODE           ?PR?_FIN_DISPLAY?MAIN
-000277H   0002A6H   000030H   BYTE   UNIT     CODE           ?PR?_DELAYMS?MAIN
-0002A7H   0002CAH   000024H   BYTE   UNIT     CODE           ?PR?GREATER_THAN_1M?MAIN
-0002CBH   0002EEH   000024H   BYTE   UNIT     CODE           ?PR?LESS_THAN_1M?MAIN
-0002EFH   000308H   00001AH   BYTE   UNIT     CODE           ?PR?LCD_INIT?MAIN
-LX51 LINKER/LOCATER V4.66.93.0                                                        08/24/2020  21:37:11  PAGE 2
+0000B6H   000137H   000082H   BYTE   UNIT     CODE           ?PR?_DISPLAYLENGTH?MAIN
+000138H   0001AEH   000077H   BYTE   UNIT     CODE           ?PR?METERBYTRIG?MAIN
+0001AFH   000213H   000065H   BYTE   UNIT     CODE           ?PR?_LCD_DISPLAY?MAIN
+000214H   00025AH   000047H   BYTE   UNIT     CODE           ?PR?_FIN_DISPLAY?MAIN
+00025BH   000284H   00002AH   BYTE   UNIT     CODE           ?PR?_DELAYMS?MAIN
+000285H   0002A8H   000024H   BYTE   UNIT     CODE           ?PR?GREATER_THAN_1M?MAIN
+0002A9H   0002CCH   000024H   BYTE   UNIT     CODE           ?PR?LESS_THAN_1M?MAIN
+0002CDH   0002E6H   00001AH   BYTE   UNIT     CODE           ?PR?LCD_INIT?MAIN
+LX51 LINKER/LOCATER V4.66.93.0                                                        08/24/2020  21:52:14  PAGE 2
 
 
-000309H   00031BH   000013H   BYTE   UNIT     CODE           ?PR?UART_INIT?MAIN
-00031CH   00032DH   000012H   BYTE   UNIT     CODE           ?PR?DELAY20MS?MAIN
-00032EH   00033BH   00000EH   BYTE   UNIT     CODE           ?PR?DELAY5S?MAIN
-00033CH   000349H   00000EH   BYTE   UNIT     CODE           ?PR?DELAY1S?MAIN
-00034AH   000355H   00000CH   BYTE   UNIT     CODE           ?PR?_UARTSND?MAIN
-000356H   00035DH   000008H   BYTE   UNIT     CODE           ?PR?_LCD_WCOM?MAIN
-00035EH   000365H   000008H   BYTE   UNIT     CODE           ?PR?_LCD_WDATA?MAIN
-000366H   00039BH   000036H   BYTE   UNIT     CONST          ?CO?MAIN
-00039CH   0007FFH   000464H   ---    ---      **GAP**
+0002E7H   0002F9H   000013H   BYTE   UNIT     CODE           ?PR?UART_INIT?MAIN
+0002FAH   00030BH   000012H   BYTE   UNIT     CODE           ?PR?DELAY20MS?MAIN
+00030CH   000319H   00000EH   BYTE   UNIT     CODE           ?PR?DELAY5S?MAIN
+00031AH   000327H   00000EH   BYTE   UNIT     CODE           ?PR?DELAY1S?MAIN
+000328H   000333H   00000CH   BYTE   UNIT     CODE           ?PR?_UARTSND?MAIN
+000334H   00033BH   000008H   BYTE   UNIT     CODE           ?PR?_LCD_WCOM?MAIN
+00033CH   000343H   000008H   BYTE   UNIT     CODE           ?PR?_LCD_WDATA?MAIN
+000344H   000379H   000036H   BYTE   UNIT     CONST          ?CO?MAIN
+00037AH   0007FFH   000486H   ---    ---      **GAP**
 000800H   000BBAH   0003BBH   BYTE   UNIT     CODE           ?C?LIB_CODE
-000BBBH   000F0DH   000353H   ---    ---      **GAP**
-000F0EH   000F19H   00000CH   BYTE   UNIT     CODE           ?C_C51STARTUP
+000BBBH   000EEBH   000331H   ---    ---      **GAP**
+000EECH   000EF7H   00000CH   BYTE   UNIT     CODE           ?C_C51STARTUP
 
 
 
@@ -120,7 +120,7 @@ METERBYTRIG/MAIN            ----- -----  0020H 0023H
 _DISPLAYLENGTH/MAIN         ----- -----  0020H 0025H
   +--> _FIN_DISPLAY/MAIN
 
-_FIN_DISPLAY/MAIN           ----- -----  0026H 002BH
+_FIN_DISPLAY/MAIN           ----- -----  0026H 0027H
   +--> _LCD_WCOM/MAIN
   +--> _LCD_WDATA/MAIN
   +--> _DELAYMS/MAIN
@@ -135,7 +135,7 @@ _LCD_DISPLAY/MAIN           ----- -----  ----- -----
   +--> _DELAYMS/MAIN
 
 DELAY20MS/MAIN              ----- -----  ----- -----
-LX51 LINKER/LOCATER V4.66.93.0                                                        08/24/2020  21:37:11  PAGE 3
+LX51 LINKER/LOCATER V4.66.93.0                                                        08/24/2020  21:52:14  PAGE 3
 
 
 
@@ -182,85 +182,85 @@ PUBLIC SYMBOLS OF MODULE:  .\OUT\KEIL_C51\8051-ULTRASONIC-DISTANCE-MEASUREMENT-S
       00000000H   NUMBER   ---       ?C?XDATASEG
       01000003H   CODE     ---       ?C_START
       01000000H   CODE     ---       ?C_STARTUP
-      01000288H   CODE     ---       _delayms
+      01000268H   CODE     ---       _delayms
       010000B6H   CODE     ---       _DisplayLength
-      0100021AH   CODE     ---       _fin_display
-      010001B0H   CODE     ---       _lcd_display
-      01000356H   CODE     ---       _lcd_wcom
-      0100035EH   CODE     ---       _lcd_wdata
-      0100034EH   CODE     ---       _UARTSnd
-      0100033CH   CODE     ---       Delay1s
-      01000325H   CODE     ---       Delay20ms
-      0100032EH   CODE     ---       Delay5s
-      010002A7H   CODE     ---       greater_than_1m
-      010002EFH   CODE     ---       lcd_init
-      010002CBH   CODE     ---       less_than_1m
+      01000214H   CODE     ---       _fin_display
+      010001AFH   CODE     ---       _lcd_display
+      01000334H   CODE     ---       _lcd_wcom
+      0100033CH   CODE     ---       _lcd_wdata
+      0100032CH   CODE     ---       _UARTSnd
+      0100031AH   CODE     ---       Delay1s
+      01000303H   CODE     ---       Delay20ms
+      0100030CH   CODE     ---       Delay5s
+      01000285H   CODE     ---       greater_than_1m
+      010002CDH   CODE     ---       lcd_init
+      010002A9H   CODE     ---       less_than_1m
       01000003H   CODE     ---       main
-      01000139H   CODE     ---       MeterByTrig
-      01000309H   CODE     ---       UART_init
+      01000138H   CODE     ---       MeterByTrig
+      010002E7H   CODE     ---       UART_init
 
 
 
 SYMBOL TABLE OF MODULE:  .\OUT\KEIL_C51\8051-ULTRASONIC-DISTANCE-MEASUREMENT-SYSTEM (MAIN)
 
-LX51 LINKER/LOCATER V4.66.93.0                                                        08/24/2020  21:37:11  PAGE 4
+LX51 LINKER/LOCATER V4.66.93.0                                                        08/24/2020  21:52:14  PAGE 4
 
 
       VALUE       REP       CLASS    TYPE      SYMBOL NAME
       ====================================================
       ---         MODULE    ---      ---       MAIN
       01000003H   PUBLIC    CODE     ---       main
-      010002CBH   PUBLIC    CODE     ---       less_than_1m
-      010002A7H   PUBLIC    CODE     ---       greater_than_1m
-      0100033CH   PUBLIC    CODE     ---       Delay1s
-      0100032EH   PUBLIC    CODE     ---       Delay5s
-      01000325H   PUBLIC    CODE     ---       Delay20ms
+      010002A9H   PUBLIC    CODE     ---       less_than_1m
+      01000285H   PUBLIC    CODE     ---       greater_than_1m
+      0100031AH   PUBLIC    CODE     ---       Delay1s
+      0100030CH   PUBLIC    CODE     ---       Delay5s
+      01000303H   PUBLIC    CODE     ---       Delay20ms
       010000B6H   PUBLIC    CODE     ---       _DisplayLength
-      01000139H   PUBLIC    CODE     ---       MeterByTrig
-      0100034EH   PUBLIC    CODE     ---       _UARTSnd
-      01000309H   PUBLIC    CODE     ---       UART_init
-      0100021AH   PUBLIC    CODE     ---       _fin_display
-      010001B0H   PUBLIC    CODE     ---       _lcd_display
-      010002EFH   PUBLIC    CODE     ---       lcd_init
-      0100035EH   PUBLIC    CODE     ---       _lcd_wdata
-      01000356H   PUBLIC    CODE     ---       _lcd_wcom
-      01000288H   PUBLIC    CODE     ---       _delayms
+      01000138H   PUBLIC    CODE     ---       MeterByTrig
+      0100032CH   PUBLIC    CODE     ---       _UARTSnd
+      010002E7H   PUBLIC    CODE     ---       UART_init
+      01000214H   PUBLIC    CODE     ---       _fin_display
+      010001AFH   PUBLIC    CODE     ---       _lcd_display
+      010002CDH   PUBLIC    CODE     ---       lcd_init
+      0100033CH   PUBLIC    CODE     ---       _lcd_wdata
+      01000334H   PUBLIC    CODE     ---       _lcd_wcom
+      01000268H   PUBLIC    CODE     ---       _delayms
 
-      01000277H   BLOCK     CODE     ---       LVL=0
+      0100025BH   BLOCK     CODE     ---       LVL=0
       ---         BLOCKEND  ---      ---       LVL=0
 
-      01000288H   BLOCK     CODE     ---       LVL=0
-      01000288H   BLOCK     CODE     NEAR LAB  LVL=1
-      00000004H   SYMBOL    DATA     VOID      i
+      01000268H   BLOCK     CODE     ---       LVL=0
+      01000268H   BLOCK     CODE     NEAR LAB  LVL=1
+      00000006H   SYMBOL    DATA     VOID      i
       ---         BLOCKEND  ---      ---       LVL=1
       ---         BLOCKEND  ---      ---       LVL=0
 
-      01000356H   BLOCK     CODE     ---       LVL=0
+      01000334H   BLOCK     CODE     ---       LVL=0
       ---         BLOCKEND  ---      ---       LVL=0
 
-      0100035EH   BLOCK     CODE     ---       LVL=0
+      0100033CH   BLOCK     CODE     ---       LVL=0
       ---         BLOCKEND  ---      ---       LVL=0
 
-      010002EFH   BLOCK     CODE     ---       LVL=0
+      010002CDH   BLOCK     CODE     ---       LVL=0
       ---         BLOCKEND  ---      ---       LVL=0
 
-      010001B0H   BLOCK     CODE     ---       LVL=0
+      010001AFH   BLOCK     CODE     ---       LVL=0
       ---         BLOCKEND  ---      ---       LVL=0
 
-      0100021AH   BLOCK     CODE     ---       LVL=0
+      01000214H   BLOCK     CODE     ---       LVL=0
       ---         BLOCKEND  ---      ---       LVL=0
 
-      01000309H   BLOCK     CODE     ---       LVL=0
+      010002E7H   BLOCK     CODE     ---       LVL=0
       ---         BLOCKEND  ---      ---       LVL=0
 
-      0100034AH   BLOCK     CODE     ---       LVL=0
+      01000328H   BLOCK     CODE     ---       LVL=0
       ---         BLOCKEND  ---      ---       LVL=0
 
-      0100034EH   BLOCK     CODE     ---       LVL=0
+      0100032CH   BLOCK     CODE     ---       LVL=0
       ---         BLOCKEND  ---      ---       LVL=0
 
-      01000139H   BLOCK     CODE     ---       LVL=0
-      01000139H   BLOCK     CODE     NEAR LAB  LVL=1
+      01000138H   BLOCK     CODE     ---       LVL=0
+      01000138H   BLOCK     CODE     NEAR LAB  LVL=1
       00000007H   SYMBOL    DATA     VOID      tempi
       00000020H   SYMBOL    DATA     VOID      PresentTime
       ---         BLOCKEND  ---      ---       LVL=1
@@ -270,48 +270,48 @@ SYMBOL TABLE OF MODULE:  .\OUT\KEIL_C51\8051-ULTRASONIC-DISTANCE-MEASUREMENT-SYS
       010000BEH   BLOCK     CODE     NEAR LAB  LVL=1
       00000024H   SYMBOL    DATA     VOID      Hundred
       00000025H   SYMBOL    DATA     VOID      Decade
-      00000003H   SYMBOL    DATA     VOID      Unit
-LX51 LINKER/LOCATER V4.66.93.0                                                        08/24/2020  21:37:11  PAGE 5
+      00000007H   SYMBOL    DATA     VOID      Unit
+LX51 LINKER/LOCATER V4.66.93.0                                                        08/24/2020  21:52:14  PAGE 5
 
 
       ---         BLOCKEND  ---      ---       LVL=1
       ---         BLOCKEND  ---      ---       LVL=0
 
-      0100031CH   BLOCK     CODE     ---       LVL=0
+      010002FAH   BLOCK     CODE     ---       LVL=0
       ---         BLOCKEND  ---      ---       LVL=0
 
-      01000325H   BLOCK     CODE     ---       LVL=0
-      01000325H   BLOCK     CODE     NEAR LAB  LVL=1
+      01000303H   BLOCK     CODE     ---       LVL=0
+      01000303H   BLOCK     CODE     NEAR LAB  LVL=1
       00000007H   SYMBOL    DATA     VOID      i
       00000006H   SYMBOL    DATA     VOID      j
       ---         BLOCKEND  ---      ---       LVL=1
       ---         BLOCKEND  ---      ---       LVL=0
 
-      0100032EH   BLOCK     CODE     ---       LVL=0
-      0100032EH   BLOCK     CODE     NEAR LAB  LVL=1
-      00000007H   SYMBOL    DATA     VOID      i
-      00000006H   SYMBOL    DATA     VOID      j
-      00000005H   SYMBOL    DATA     VOID      k
-      ---         BLOCKEND  ---      ---       LVL=1
-      ---         BLOCKEND  ---      ---       LVL=0
-
-      0100033CH   BLOCK     CODE     ---       LVL=0
-      0100033CH   BLOCK     CODE     NEAR LAB  LVL=1
+      0100030CH   BLOCK     CODE     ---       LVL=0
+      0100030CH   BLOCK     CODE     NEAR LAB  LVL=1
       00000007H   SYMBOL    DATA     VOID      i
       00000006H   SYMBOL    DATA     VOID      j
       00000005H   SYMBOL    DATA     VOID      k
       ---         BLOCKEND  ---      ---       LVL=1
       ---         BLOCKEND  ---      ---       LVL=0
 
-      010002A7H   BLOCK     CODE     ---       LVL=0
-      010002A7H   BLOCK     CODE     NEAR LAB  LVL=1
+      0100031AH   BLOCK     CODE     ---       LVL=0
+      0100031AH   BLOCK     CODE     NEAR LAB  LVL=1
+      00000007H   SYMBOL    DATA     VOID      i
+      00000006H   SYMBOL    DATA     VOID      j
+      00000005H   SYMBOL    DATA     VOID      k
+      ---         BLOCKEND  ---      ---       LVL=1
+      ---         BLOCKEND  ---      ---       LVL=0
+
+      01000285H   BLOCK     CODE     ---       LVL=0
+      01000285H   BLOCK     CODE     NEAR LAB  LVL=1
       00000006H   SYMBOL    DATA     VOID      tempj
       00000020H   SYMBOL    DATA     VOID      greater_than_1m
       ---         BLOCKEND  ---      ---       LVL=1
       ---         BLOCKEND  ---      ---       LVL=0
 
-      010002CBH   BLOCK     CODE     ---       LVL=0
-      010002CBH   BLOCK     CODE     NEAR LAB  LVL=1
+      010002A9H   BLOCK     CODE     ---       LVL=0
+      010002A9H   BLOCK     CODE     NEAR LAB  LVL=1
       00000006H   SYMBOL    DATA     VOID      tempj
       00000020H   SYMBOL    DATA     VOID      less_than_1m
       ---         BLOCKEND  ---      ---       LVL=1
@@ -339,7 +339,7 @@ SYMBOL TABLE OF MODULE:  .\OUT\KEIL_C51\8051-ULTRASONIC-DISTANCE-MEASUREMENT-SYS
 
       ---         MODULE    ---      ---       ?C?FPGETOPN
       0100097BH   PUBLIC    CODE     ---       ?C?FPGETOPN2
-LX51 LINKER/LOCATER V4.66.93.0                                                        08/24/2020  21:37:11  PAGE 6
+LX51 LINKER/LOCATER V4.66.93.0                                                        08/24/2020  21:52:14  PAGE 6
 
 
       010009B0H   PUBLIC    CODE     ---       ?C?FPNANRESULT
@@ -367,8 +367,8 @@ SYMBOL TABLE OF MODULE:  .\OUT\KEIL_C51\8051-ULTRASONIC-DISTANCE-MEASUREMENT-SYS
       01000BA8H   PUBLIC    CODE     ---       ?C?LSHL
 
 ******************************************************************************
-* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0399H BYTE (44%) *
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0377H BYTE (43%) *
 ******************************************************************************
 
-Program Size: data=53.0 xdata=0 const=54 code=1837
+Program Size: data=53.0 xdata=0 const=54 code=1803
 LX51 RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

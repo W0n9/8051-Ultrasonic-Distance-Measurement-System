@@ -1,4 +1,4 @@
-C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:37:11 PAGE 1   
+C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:52:14 PAGE 1   
 
 
 C51 COMPILER V9.59.0.0, COMPILATION OF MODULE MAIN
@@ -57,12 +57,12 @@ line level    source
   47          // int W1,W2,W3,W4,W5,W6,W7;
   48          
   49          /***********延时函数******************/
-  50          void delayms(uint16_t time)
+  50          void delayms(uint8_t time)
   51          {
-  52   1          uint16_t i;
+  52   1          uint8_t i;
   53   1          for (; time > 0; time--)
   54   1          {
-C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:37:11 PAGE 2   
+C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:52:14 PAGE 2   
 
   55   2              for (i = 0; i < 124; i++)
   56   2              {
@@ -109,7 +109,7 @@ line level    source
   97          
   98          /**********************LCD显示子函数****************************/
   99          //i设置字符位置，j是显示的数字
- 100          void lcd_display(uint16_t i, uint16_t j)
+ 100          void lcd_display(uint8_t i, uint8_t j)
  101          {
  102   1      
  103   1          lcd_wcom(0x80 + i - 1);
@@ -126,7 +126,7 @@ line level    source
  114   2          case 2:
  115   2              lcd_wdata('2');
  116   2              delayms(2);
-C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:37:11 PAGE 3   
+C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:52:14 PAGE 3   
 
  117   2              break;
  118   2          case 3:
@@ -165,7 +165,7 @@ line level    source
  151   1      }
  152          /*********************最终显示函数*************************************/
  153          //abc分别为百十个位，使用前需lcd_init()初始化
- 154          void fin_display(uint16_t a, b, c)
+ 154          void fin_display(uint8_t a, b, c)
  155          {
  156   1          lcd_wcom(0x80 + 7 - 1);
  157   1          lcd_wdata('M');
@@ -190,7 +190,7 @@ line level    source
  176          //  //lcd_display(10,W1);
  177          //  //lcd_display(9,':');
  178          //  // lcd_display(8,1);
-C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:37:11 PAGE 4   
+C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:52:14 PAGE 4   
 
  179          //  // lcd_display(7,W3);
  180          //    // lcd_display(6,':');
@@ -245,101 +245,50 @@ line level    source
  229          #ifdef XTAL11M
  230          uint32_t MeterByTrig()
  231          {
- 232   1          // uint8_t tempa;
- 233   1          uint8_t tempi;
- 234   1          // uint8_t IsOverFlow;
- 235   1          uint32_t PresentTime;
- 236   1          // IsOverFlow = 0;
- 237   1      
- 238   1          //Delay1Ms();
- 239   1      
- 240   1          // P1M1 &= 0X7F;
-C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:37:11 PAGE 5   
+ 232   1          uint8_t tempi;
+ 233   1          uint32_t PresentTime;
+ 234   1      
+ 235   1          //Timer Init
+ 236   1          TMOD &= 0xF1;
+ 237   1          // TAMOD = 0X00;
+ 238   1          // TCON = 0X00;
+ 239   1          TH0 = 0;
+ 240   1          TL0 = 0;
+C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:52:14 PAGE 5   
 
- 241   1          // P1M2 &= 0X7F;
- 242   1      
- 243   1          // P1M1 |= 0X40;
- 244   1          // P1M2 &= 0XBF;
- 245   1      
- 246   1          //Timer Init
- 247   1          TMOD &= 0xF1;
- 248   1          // TAMOD = 0X00;
- 249   1          // TCON = 0X00;
- 250   1          TH0 = 0;
- 251   1          TL0 = 0;
- 252   1      
- 253   1          // Module Start
- 254   1          Trig_Pin = 0;
- 255   1          Trig_Pin = 1;
- 256   1          _nop_();
- 257   1          tempi = 25;
- 258   1          while (--tempi)
- 259   1              ;
- 260   1          Trig_Pin = 0;
- 261   1      
- 262   1          // while (1)
- 263   1          // {
- 264   1          //     if (Echo_Pin == 1)
- 265   1          //     {            //Start Timer;
- 266   1          //         TR0 = 1; //start timer
- 267   1          //         break;
- 268   1          //     }
- 269   1          //     if (TF0 == 1)
- 270   1          //     {
- 271   1          //         IsOverFlow = 1;
- 272   1          //         break; //overflow;
- 273   1          //     }
- 274   1          // }
- 275   1      
- 276   1          // while (1)
- 277   1          // {
- 278   1          //     if (Echo_Pin == 0)
- 279   1          //     { //Stop Timer;
- 280   1          //         TR0 = 0;
- 281   1          //         break;
- 282   1          //     }
- 283   1          //     if (TF0 == 1)
- 284   1          //     {
- 285   1          //         IsOverFlow = 1;
- 286   1          //         break; //overflow;
- 287   1          //     }
- 288   1          // }
- 289   1      
- 290   1          while (!Echo_Pin)
- 291   1              ;
- 292   1          TR0 = 1;
- 293   1          while (Echo_Pin)
- 294   1              ;
- 295   1          TR0 = 0;
- 296   1      
- 297   1          //  uint32_t PresentTime, tempb;
- 298   1          PresentTime = TH0;
- 299   1          PresentTime <<= 8; // Equal TH0 * 256
- 300   1          PresentTime += TL0;
- 301   1          //921600 Cycles @11.0592MHz
- 302   1          // PresentTime /= 921.6;
-C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:37:11 PAGE 6   
-
- 303   1          // PresentTime /= 922;
- 304   1          // PresentTime *= 17;
- 305   1          //  TODO
- 306   1          // PresentTime = (uint32_t)(PresentTime * 0.0184);
- 307   1          PresentTime = (uint32_t)(PresentTime * 0.0023);
- 308   1      
- 309   1          // tempb = PresentTime / 137;
- 310   1          // PresentTime /= 7; //*3
- 311   1      
- 312   1          // PresentTime -= tempb; //time, us
- 313   1      
- 314   1          // tempb = PresentTime / 150;
- 315   1          // PresentTime /= 3;
- 316   1          // PresentTime += tempb;
- 317   1          //Delay1Ms();
- 318   1          return PresentTime;
- 319   1      }
- 320          #endif
- 321          
- 322          #ifdef XTAL12M
+ 241   1      
+ 242   1          // Module Start
+ 243   1          Trig_Pin = 0;
+ 244   1          Trig_Pin = 1;
+ 245   1          _nop_();
+ 246   1          tempi = 25;
+ 247   1          while (--tempi)
+ 248   1              ;
+ 249   1          Trig_Pin = 0;
+ 250   1      
+ 251   1          while (!Echo_Pin)
+ 252   1              ;
+ 253   1          TR0 = 1;
+ 254   1          while (Echo_Pin)
+ 255   1              ;
+ 256   1          TR0 = 0;
+ 257   1      
+ 258   1          PresentTime = TH0;
+ 259   1          PresentTime <<= 8; // Equal TH0 * 256
+ 260   1          PresentTime += TL0;
+ 261   1          //921600 Cycles @11.0592MHz
+ 262   1          // PresentTime /= 921.6;
+ 263   1          // PresentTime /= 922;
+ 264   1          // PresentTime *= 17;
+ 265   1          PresentTime = PresentTime * 0.0184;
+ 266   1          // PresentTime = (uint32_t)(PresentTime * 0.0023);
+ 267   1      
+ 268   1          // delayms(5);
+ 269   1          return PresentTime;
+ 270   1      }
+ 271          #endif
+ 272          
+ 273          #ifdef XTAL12M
               uint32_t MeterByTrig()
               {
                   uint8_t tempa;
@@ -369,6 +318,8 @@ line level    source
                   }
                   Trig_Pin = 0;
               
+C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:52:14 PAGE 6   
+
                   while (1)
                   {
                       if (Echo_Pin == 1)
@@ -382,8 +333,6 @@ line level    source
                           break; //overflow;
                       }
                   }
-C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:37:11 PAGE 7   
-
               
                   while (1)
                   {
@@ -419,331 +368,323 @@ line level    source
                   return PresentTime;
               }
               #endif
- 400          
- 401          void DisplayLength(uint32_t number)
- 402          {
- 403   1          uint8_t Hundred, Decade, Unit;
- 404   1          if (number > 999)
- 405   1              number = 0;
- 406   1          // Thousand = number / 1000;
- 407   1      
- 408   1          // number = number % 1000;
- 409   1          Hundred = number / 100;
- 410   1      
- 411   1          number = number % 100;
- 412   1          Decade = number / 10;
- 413   1      
- 414   1          Unit = number % 10;
- 415   1      
- 416   1          fin_display(Hundred, Decade, Unit);
- 417   1          // DisplayLED(1, Thousand, 0);
- 418   1          // DisplayLED(2, Hundred, 0);
- 419   1          // DisplayLED(3, Decade, 0);
- 420   1          // DisplayLED(4, Unit, 0);
- 421   1      }
- 422          
- 423          // void DisplayLED(uint8_t LEDid, uint8_t Value, uint8_t Isdot)
- 424          // {
- 425          //     uint8_t tempa, tempb;
- 426          //     uint8_t tempc, tempd;
-C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:37:11 PAGE 8   
+ 351          
+ 352          void DisplayLength(uint32_t number)
+ 353          {
+ 354   1          uint8_t Hundred, Decade, Unit;
+ 355   1          if (number > 999)
+ 356   1              number = 0;
+ 357   1          // Thousand = number / 1000;
+ 358   1      
+ 359   1          // number = number % 1000;
+ 360   1          Hundred = number / 100;
+ 361   1      
+ 362   1          number = number % 100;
+ 363   1          Decade = number / 10;
+ 364   1      
+C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:52:14 PAGE 7   
 
- 427          //     const uint8_t NumValue[11] = {0X40, 0X79, 0X24, 0X30, 0X19, 0X12, 0X02, 0X78, 0X00, 0X10, 0X3F}; //
+ 365   1          Unit = number % 10;
+ 366   1      
+ 367   1          fin_display(Hundred, Decade, Unit);
+ 368   1          // DisplayLED(1, Thousand, 0);
+ 369   1          // DisplayLED(2, Hundred, 0);
+ 370   1          // DisplayLED(3, Decade, 0);
+ 371   1          // DisplayLED(4, Unit, 0);
+ 372   1      }
+ 373          
+ 374          // void DisplayLED(uint8_t LEDid, uint8_t Value, uint8_t Isdot)
+ 375          // {
+ 376          //     uint8_t tempa, tempb;
+ 377          //     uint8_t tempc, tempd;
+ 378          //     const uint8_t NumValue[11] = {0X40, 0X79, 0X24, 0X30, 0X19, 0X12, 0X02, 0X78, 0X00, 0X10, 0X3F}; //
              -0, 1, 2, 3, 4, 5, 6, 7, 8, 9, -.
- 428          
- 429          //     tempa = 1;
- 430          //     tempa <<= (LEDid - 1);
- 431          //     if (Value >= 11) //value should little than 10
- 432          //         Value = 0;
- 433          //     tempb = NumValue[Value];
- 434          //     if (Isdot == 0)
- 435          //         tempb += 0X80;
- 436          
- 437          //     //begin output
- 438          //     tempd = 0X80;
- 439          //     for (tempc = 0; tempc < 8; tempc++)
- 440          //     {
- 441          //         SCK_SHBit = 0;
- 442          //         SCK_SHBit = 0;
- 443          //         DIO_DS = (tempa & tempd);
- 444          //         SCK_SHBit = 1;
- 445          //         SCK_SHBit = 1;
- 446          //         tempd >>= 1;
- 447          //     }
- 448          
- 449          //     tempd = 0X80;
- 450          //     for (tempc = 0; tempc < 8; tempc++)
- 451          //     {
- 452          //         SCK_SHBit = 0;
- 453          //         SCK_SHBit = 0;
- 454          //         DIO_DS = (tempb & tempd);
- 455          //         SCK_SHBit = 1;
- 456          //         SCK_SHBit = 1;
- 457          //         tempd >>= 1;
- 458          //     }
- 459          
- 460          //     RCK_STMM = 0;
- 461          //     RCK_STMM = 0;
- 462          //     RCK_STMM = 0;
- 463          //     RCK_STMM = 0;
- 464          //     RCK_STMM = 1;
- 465          //     RCK_STMM = 1;
- 466          //     RCK_STMM = 1;
- 467          //     RCK_STMM = 1;
- 468          //     //Delay1Ms();
- 469          // }
+ 379          
+ 380          //     tempa = 1;
+ 381          //     tempa <<= (LEDid - 1);
+ 382          //     if (Value >= 11) //value should little than 10
+ 383          //         Value = 0;
+ 384          //     tempb = NumValue[Value];
+ 385          //     if (Isdot == 0)
+ 386          //         tempb += 0X80;
+ 387          
+ 388          //     //begin output
+ 389          //     tempd = 0X80;
+ 390          //     for (tempc = 0; tempc < 8; tempc++)
+ 391          //     {
+ 392          //         SCK_SHBit = 0;
+ 393          //         SCK_SHBit = 0;
+ 394          //         DIO_DS = (tempa & tempd);
+ 395          //         SCK_SHBit = 1;
+ 396          //         SCK_SHBit = 1;
+ 397          //         tempd >>= 1;
+ 398          //     }
+ 399          
+ 400          //     tempd = 0X80;
+ 401          //     for (tempc = 0; tempc < 8; tempc++)
+ 402          //     {
+ 403          //         SCK_SHBit = 0;
+ 404          //         SCK_SHBit = 0;
+ 405          //         DIO_DS = (tempb & tempd);
+ 406          //         SCK_SHBit = 1;
+ 407          //         SCK_SHBit = 1;
+ 408          //         tempd >>= 1;
+ 409          //     }
+ 410          
+ 411          //     RCK_STMM = 0;
+ 412          //     RCK_STMM = 0;
+ 413          //     RCK_STMM = 0;
+ 414          //     RCK_STMM = 0;
+ 415          //     RCK_STMM = 1;
+ 416          //     RCK_STMM = 1;
+ 417          //     RCK_STMM = 1;
+ 418          //     RCK_STMM = 1;
+ 419          //     //Delay1Ms();
+ 420          // }
+ 421          
+ 422          void Delay20ms() //@11.0592MHz
+ 423          {
+ 424   1          uint8_t i, j;
+ 425   1      
+C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:52:14 PAGE 8   
+
+ 426   1          i = 36;
+ 427   1          j = 217;
+ 428   1          do
+ 429   1          {
+ 430   2              while (--j)
+ 431   2                  ;
+ 432   2          } while (--i);
+ 433   1      }
+ 434          
+ 435          void Delay5s() //@11.0592MHz
+ 436          {
+ 437   1          uint8_t i, j, k;
+ 438   1      
+ 439   1          _nop_();
+ 440   1          i = 36;
+ 441   1          j = 5;
+ 442   1          k = 211;
+ 443   1          do
+ 444   1          {
+ 445   2              do
+ 446   2              {
+ 447   3                  while (--k)
+ 448   3                      ;
+ 449   3              } while (--j);
+ 450   2          } while (--i);
+ 451   1      }
+ 452          
+ 453          void Delay1s() //@11.0592MHz
+ 454          {
+ 455   1          uint8_t i, j, k;
+ 456   1      
+ 457   1          _nop_();
+ 458   1          i = 11;
+ 459   1          j = 130;
+ 460   1          k = 111;
+ 461   1          do
+ 462   1          {
+ 463   2              do
+ 464   2              {
+ 465   3                  while (--k)
+ 466   3                      ;
+ 467   3              } while (--j);
+ 468   2          } while (--i);
+ 469   1      }
  470          
- 471          void Delay20ms() //@11.0592MHz
- 472          {
- 473   1          uint8_t i, j;
- 474   1      
- 475   1          i = 36;
- 476   1          j = 217;
- 477   1          do
- 478   1          {
- 479   2              while (--j)
- 480   2                  ;
- 481   2          } while (--i);
- 482   1      }
- 483          
- 484          void Delay5s() //@11.0592MHz
- 485          {
- 486   1          uint8_t i, j, k;
- 487   1      
-C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:37:11 PAGE 9   
-
- 488   1          _nop_();
- 489   1          i = 36;
- 490   1          j = 5;
- 491   1          k = 211;
- 492   1          do
- 493   1          {
- 494   2              do
- 495   2              {
- 496   3                  while (--k)
- 497   3                      ;
- 498   3              } while (--j);
- 499   2          } while (--i);
- 500   1      }
- 501          
- 502          void Delay1s() //@11.0592MHz
- 503          {
- 504   1          uint8_t i, j, k;
- 505   1      
- 506   1          _nop_();
- 507   1          i = 11;
- 508   1          j = 130;
- 509   1          k = 111;
- 510   1          do
- 511   1          {
- 512   2              do
- 513   2              {
- 514   3                  while (--k)
- 515   3                      ;
- 516   3              } while (--j);
- 517   2          } while (--i);
- 518   1      }
- 519          
- 520          // void greater_than_2m()
- 521          // {
- 522          //     uint8_t tempj;
- 523          //     uint8_t greater_than_2m[] = {0xFD, 0x00, 0x11, 0x01, 0x01, 0x73, 0x6F, 0x75, 0x6E, 0x64, 0x6B, 0xB4
+ 471          // void greater_than_2m()
+ 472          // {
+ 473          //     uint8_t tempj;
+ 474          //     uint8_t greater_than_2m[] = {0xFD, 0x00, 0x11, 0x01, 0x01, 0x73, 0x6F, 0x75, 0x6E, 0x64, 0x6B, 0xB4
              -, 0xF3, 0xD3, 0xDA, 0xC1, 0xBD, 0xC3, 0xD7, 0xC2};
- 524          //     Delay20ms();
- 525          //     for (tempj = 0; tempj < 20; tempj++)
- 526          //     {
- 527          //         UARTSnd(greater_than_2m[tempj]);
- 528          //     }
- 529          // }
- 530          
- 531          void greater_than_1m()
- 532          {
- 533   1          uint8_t tempj;
- 534   1          uint8_t greater_than_1m[] = {0xFD, 0x00, 0x11, 0x01, 0x01, 0x73, 0x6F, 0x75, 0x6E, 0x64, 0x6B, 0xB4, 0
+ 475          //     Delay20ms();
+ 476          //     for (tempj = 0; tempj < 20; tempj++)
+ 477          //     {
+ 478          //         UARTSnd(greater_than_2m[tempj]);
+ 479          //     }
+ 480          // }
+ 481          
+ 482          void greater_than_1m()
+ 483          {
+ 484   1          uint8_t tempj;
+ 485   1          uint8_t greater_than_1m[] = {0xFD, 0x00, 0x11, 0x01, 0x01, 0x73, 0x6F, 0x75, 0x6E, 0x64, 0x6B, 0xB4, 0
              -xF3, 0xD3, 0xDA, 0xD2, 0xBB, 0xC3, 0xD7, 0xD7};
- 535   1          Delay20ms();
- 536   1          for (tempj = 0; tempj < 20; tempj++)
- 537   1          {
- 538   2              UARTSnd(greater_than_1m[tempj]);
- 539   2          }
- 540   1          Delay5s();
- 541   1      }
- 542          
- 543          void less_than_1m()
- 544          {
- 545   1          uint8_t tempj;
- 546   1          uint8_t less_than_1m[] = {0xFD, 0x00, 0x0B, 0x01, 0x01, 0xD0, 0xA1, 0xD3, 0xDA, 0xD2, 0xBB, 0xC3, 0xD7
+C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:52:14 PAGE 9   
+
+ 486   1          Delay20ms();
+ 487   1          for (tempj = 0; tempj < 20; tempj++)
+ 488   1          {
+ 489   2              UARTSnd(greater_than_1m[tempj]);
+ 490   2          }
+ 491   1          Delay5s();
+ 492   1      }
+ 493          
+ 494          void less_than_1m()
+ 495          {
+ 496   1          uint8_t tempj;
+ 497   1          uint8_t less_than_1m[] = {0xFD, 0x00, 0x0B, 0x01, 0x01, 0xD0, 0xA1, 0xD3, 0xDA, 0xD2, 0xBB, 0xC3, 0xD7
              -, 0xF3};
-C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:37:11 PAGE 10  
-
- 547   1          Delay20ms();
- 548   1          for (tempj = 0; tempj < 14; tempj++)
- 549   1          {
- 550   2              UARTSnd(less_than_1m[tempj]);
- 551   2          }
- 552   1          Delay1s();
- 553   1      }
- 554          
- 555          void main()
- 556          {
- 557   1          // uint8_t tempa;
- 558   1          uint32_t PreLength; //  Unit is cm
- 559   1          uint8_t i;
- 560   1          uint8_t tempj;
- 561   1          uint8_t greater_than_2m[] = {0xFD, 0x00, 0x11, 0x01, 0x01, 0x73, 0x6F, 0x75, 0x6E, 0x64, 0x6B, 0xB4, 0
+ 498   1          Delay20ms();
+ 499   1          for (tempj = 0; tempj < 14; tempj++)
+ 500   1          {
+ 501   2              UARTSnd(less_than_1m[tempj]);
+ 502   2          }
+ 503   1          Delay1s();
+ 504   1      }
+ 505          
+ 506          void main()
+ 507          {
+ 508   1          // uint8_t tempa;
+ 509   1          uint32_t PreLength; //  Unit is cm
+ 510   1          uint8_t i;
+ 511   1          uint8_t tempj;
+ 512   1          uint8_t greater_than_2m[] = {0xFD, 0x00, 0x11, 0x01, 0x01, 0x73, 0x6F, 0x75, 0x6E, 0x64, 0x6B, 0xB4, 0
              -xF3, 0xD3, 0xDA, 0xC1, 0xBD, 0xC3, 0xD7, 0xC2};
- 562   1          // uint8_t debug;
- 563   1          lcd_init();
- 564   1          UART_init();
- 565   1      
- 566   1          // for (i = 0; i < 1; i++)
- 567   1          // { // greater_than_2m();
- 568   1      
- 569   1          //     Delay20ms();
- 570   1          //     for (tempj = 0; tempj < 20; tempj++)
- 571   1          //     {
- 572   1          //         UARTSnd(greater_than_2m[tempj]);
- 573   1          //     }
- 574   1          // }
- 575   1      
- 576   1          // // greater_than_2m();
- 577   1          // Delay5s();
- 578   1          // for (i = 0; i < 3; i++)
- 579   1          // {
- 580   1          //     greater_than_1m();
- 581   1          // }
- 582   1          // // Delay5s();
- 583   1          // for (i = 0; i < 3; i++)
- 584   1          // {
- 585   1          //     less_than_1m();
- 586   1          // }
- 587   1      
- 588   1          while (1)
- 589   1          {
- 590   2              PreLength = MeterByTrig();
- 591   2              DisplayLength(PreLength);
- 592   2              // if (PreLength > 200)
- 593   2              // {
- 594   2              //     for (i = 0; i < 1; i++)
- 595   2              //     { // greater_than_2m();
- 596   2              //         Delay20ms();
- 597   2              //         for (tempj = 0; tempj < 20; tempj++)
- 598   2              //         {
- 599   2              //             UARTSnd(greater_than_2m[tempj]);
- 600   2              //         }
- 601   2              //     }
- 602   2              // }
- 603   2              // else if (PreLength <= 200 && PreLength >= 100)
- 604   2              // {
- 605   2              //     for (i = 0; i < 3; i++)
- 606   2              //     {
- 607   2              //         greater_than_1m();
-C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:37:11 PAGE 11  
+ 513   1          // uint8_t debug;
+ 514   1          lcd_init();
+ 515   1          UART_init();
+ 516   1      
+ 517   1          // for (i = 0; i < 1; i++)
+ 518   1          // { // greater_than_2m();
+ 519   1      
+ 520   1          //     Delay20ms();
+ 521   1          //     for (tempj = 0; tempj < 20; tempj++)
+ 522   1          //     {
+ 523   1          //         UARTSnd(greater_than_2m[tempj]);
+ 524   1          //     }
+ 525   1          // }
+ 526   1      
+ 527   1          // // greater_than_2m();
+ 528   1          // Delay5s();
+ 529   1          // for (i = 0; i < 3; i++)
+ 530   1          // {
+ 531   1          //     greater_than_1m();
+ 532   1          // }
+ 533   1          // // Delay5s();
+ 534   1          // for (i = 0; i < 3; i++)
+ 535   1          // {
+ 536   1          //     less_than_1m();
+ 537   1          // }
+ 538   1      
+ 539   1          while (1)
+ 540   1          {
+ 541   2              PreLength = MeterByTrig();
+ 542   2              DisplayLength(PreLength);
+ 543   2              // if (PreLength > 200)
+ 544   2              // {
+ 545   2              //     for (i = 0; i < 1; i++)
+C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:52:14 PAGE 10  
 
- 608   2              //     }
- 609   2              // }
- 610   2              // else if (PreLength <= 100)
- 611   2              // {
- 612   2              //     for (i = 0; i < 3; i++)
- 613   2              //     {
- 614   2              //         less_than_1m();
- 615   2              //     }
- 616   2              // }
- 617   2              if (!Mode_1)
- 618   2              {
- 619   3                  if (PreLength > 200)
- 620   3                  {
- 621   4                      for (i = 0; i < 1; i++)
- 622   4                      { // greater_than_2m();
- 623   5                          Delay20ms();
- 624   5                          for (tempj = 0; tempj < 20; tempj++)
- 625   5                          {
- 626   6                              UARTSnd(greater_than_2m[tempj]);
- 627   6                          }
- 628   5                      }
- 629   4                      Delay5s();
- 630   4                  }
- 631   3              }
- 632   2              else if (!Mode_2)
- 633   2              {
- 634   3                  if (PreLength <= 200 && PreLength >= 100)
- 635   3                  {
- 636   4                      greater_than_1m();
- 637   4                  }
- 638   3              }
- 639   2              else if (!Mode_3)
- 640   2              {
- 641   3                  if (PreLength <= 100)
- 642   3                  {
- 643   4                      less_than_1m();
- 644   4                  }
- 645   3              }
- 646   2      
- 647   2              // debug = PreLength / 1000;
- 648   2              // UARTSnd(PreLength);
- 649   2              // Delay5s();
- 650   2      
- 651   2              // for (tempa = 0; tempa < 200; tempa++)   //  refresh for 200 cycles
- 652   2              // {
- 653   2              //     DisplayLength(PreLength);
- 654   2              // }
- 655   2          }
- 656   1      }
-C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:37:11 PAGE 12  
+ 546   2              //     { // greater_than_2m();
+ 547   2              //         Delay20ms();
+ 548   2              //         for (tempj = 0; tempj < 20; tempj++)
+ 549   2              //         {
+ 550   2              //             UARTSnd(greater_than_2m[tempj]);
+ 551   2              //         }
+ 552   2              //     }
+ 553   2              // }
+ 554   2              // else if (PreLength <= 200 && PreLength >= 100)
+ 555   2              // {
+ 556   2              //     for (i = 0; i < 3; i++)
+ 557   2              //     {
+ 558   2              //         greater_than_1m();
+ 559   2              //     }
+ 560   2              // }
+ 561   2              // else if (PreLength <= 100)
+ 562   2              // {
+ 563   2              //     for (i = 0; i < 3; i++)
+ 564   2              //     {
+ 565   2              //         less_than_1m();
+ 566   2              //     }
+ 567   2              // }
+ 568   2              if (!Mode_1)
+ 569   2              {
+ 570   3                  if (PreLength > 200)
+ 571   3                  {
+ 572   4                      for (i = 0; i < 1; i++)
+ 573   4                      { // greater_than_2m();
+ 574   5                          Delay20ms();
+ 575   5                          for (tempj = 0; tempj < 20; tempj++)
+ 576   5                          {
+ 577   6                              UARTSnd(greater_than_2m[tempj]);
+ 578   6                          }
+ 579   5                      }
+ 580   4                      Delay5s();
+ 581   4                  }
+ 582   3              }
+ 583   2              else if (!Mode_2)
+ 584   2              {
+ 585   3                  if (PreLength <= 200 && PreLength >= 100)
+ 586   3                  {
+ 587   4                      greater_than_1m();
+ 588   4                  }
+ 589   3              }
+ 590   2              else if (!Mode_3)
+ 591   2              {
+ 592   3                  if (PreLength <= 100)
+ 593   3                  {
+ 594   4                      less_than_1m();
+ 595   4                  }
+ 596   3              }
+ 597   2      
+ 598   2              // debug = PreLength / 1000;
+ 599   2              // UARTSnd(PreLength);
+ 600   2              // Delay5s();
+ 601   2      
+ 602   2              // for (tempa = 0; tempa < 200; tempa++)   //  refresh for 200 cycles
+ 603   2              // {
+ 604   2              //     DisplayLength(PreLength);
+ 605   2              // }
+ 606   2          }
+ 607   1      }
+C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:52:14 PAGE 11  
 
 ASSEMBLY LISTING OF GENERATED OBJECT CODE
 
 
-             ; FUNCTION L?0101 (BEGIN)
+             ; FUNCTION L?0099 (BEGIN)
 0000 C2B6              CLR     lcdrw
 0002 8F80              MOV     P0,R7
 0004 7F05              MOV     R7,#05H
-0006 7E00              MOV     R6,#00H
-0008 120000      R     LCALL   _delayms
-000B D2B4              SETB    lcden
-000D         L?0102:
-000D 7F02              MOV     R7,#02H
-000F 7E00              MOV     R6,#00H
+0006 120000      R     LCALL   _delayms
+0009 D2B4              SETB    lcden
+000B 7F02              MOV     R7,#02H
              ; FUNCTION _delayms (BEGIN)
                                            ; SOURCE LINE # 50
-;---- Variable 'time' assigned to Register 'R6/R7' ----
+;---- Variable 'time' assigned to Register 'R7' ----
                                            ; SOURCE LINE # 51
                                            ; SOURCE LINE # 53
-0011         ?C0001:
-0011 D3                SETB    C
-0012 EF                MOV     A,R7
-0013 9400              SUBB    A,#00H
-0015 EE                MOV     A,R6
-0016 9400              SUBB    A,#00H
-0018 4015              JC      ?C0007
+000D         ?C0001:
+000D EF                MOV     A,R7
+000E D3                SETB    C
+000F 9400              SUBB    A,#00H
+0011 7480              MOV     A,#080H
+0013 9480              SUBB    A,#080H
+0015 4012              JC      ?C0007
                                            ; SOURCE LINE # 54
                                            ; SOURCE LINE # 55
-;---- Variable 'i' assigned to Register 'R4/R5' ----
-001A E4                CLR     A
-001B FD                MOV     R5,A
-001C FC                MOV     R4,A
-001D         ?C0004:
+;---- Variable 'i' assigned to Register 'R6' ----
+0017 E4                CLR     A
+0018 FE                MOV     R6,A
+0019         ?C0004:
+0019 EE                MOV     A,R6
+001A C3                CLR     C
+001B 947C              SUBB    A,#07CH
+001D 7480              MOV     A,#080H
+001F 9480              SUBB    A,#080H
+0021 5003              JNC     ?C0003
                                            ; SOURCE LINE # 56
                                            ; SOURCE LINE # 58
-001D 0D                INC     R5
-001E BD0001            CJNE    R5,#00H,?C0087
-0021 0C                INC     R4
-0022         ?C0087:
-0022 ED                MOV     A,R5
-0023 647C              XRL     A,#07CH
-0025 4C                ORL     A,R4
-0026 70F5              JNZ     ?C0004
+0023 0E                INC     R6
+0024 80F3              SJMP    ?C0004
                                            ; SOURCE LINE # 59
-0028         ?C0003:
-0028 EF                MOV     A,R7
-0029 1F                DEC     R7
-002A 70E5              JNZ     ?C0001
-002C 1E                DEC     R6
-002D         ?C0088:
-002D 80E2              SJMP    ?C0001
+0026         ?C0003:
+0026 1F                DEC     R7
+0027 80E4              SJMP    ?C0001
                                            ; SOURCE LINE # 60
-002F         ?C0007:
-002F 22                RET     
+0029         ?C0007:
+0029 22                RET     
              ; FUNCTION _delayms (END)
 
              ; FUNCTION _lcd_wcom (BEGIN)
@@ -753,16 +694,16 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
                                            ; SOURCE LINE # 65
 0000 C2B5              CLR     lcdrs
                                            ; SOURCE LINE # 66
-C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:37:11 PAGE 13  
-
                                            ; SOURCE LINE # 67
                                            ; SOURCE LINE # 68
                                            ; SOURCE LINE # 69
                                            ; SOURCE LINE # 70
-0002 120000      R     LCALL   L?0101
+0002 120000      R     LCALL   L?0099
                                            ; SOURCE LINE # 71
 0005 C2B4              CLR     lcden
                                            ; SOURCE LINE # 72
+C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:52:14 PAGE 12  
+
 0007 22                RET     
              ; FUNCTION _lcd_wcom (END)
 
@@ -777,7 +718,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
                                            ; SOURCE LINE # 80
                                            ; SOURCE LINE # 81
                                            ; SOURCE LINE # 82
-0002 120000      R     LCALL   L?0101
+0002 120000      R     LCALL   L?0099
                                            ; SOURCE LINE # 83
 0005 C2B4              CLR     lcden
                                            ; SOURCE LINE # 84
@@ -809,195 +750,183 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 
              ; FUNCTION _lcd_display (BEGIN)
                                            ; SOURCE LINE # 100
-;---- Variable 'j' assigned to Register 'R2/R3' ----
-0000 AB05              MOV     R3,AR5
-0002 AA04              MOV     R2,AR4
-;---- Variable 'i' assigned to Register 'R6/R7' ----
+;---- Variable 'j' assigned to Register 'R5' ----
+;---- Variable 'i' assigned to Register 'R7' ----
                                            ; SOURCE LINE # 101
                                            ; SOURCE LINE # 103
-0004 EF                MOV     A,R7
-0005 247F              ADD     A,#07FH
-C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:37:11 PAGE 14  
-
-0007 FF                MOV     R7,A
-0008 120000      R     LCALL   _lcd_wcom
+0000 EF                MOV     A,R7
+0001 247F              ADD     A,#07FH
+0003 FF                MOV     R7,A
+0004 120000      R     LCALL   _lcd_wcom
                                            ; SOURCE LINE # 104
-000B EA                MOV     A,R2
-000C 7053              JNZ     ?C0022
-000E EB                MOV     A,R3
-000F B40A00            CJNE    A,#0AH,?C0089
-0012         ?C0089:
-0012 504D              JNC     ?C0022
-0014 900000      R     MOV     DPTR,#?C0090
-0017 F8                MOV     R0,A
-0018 28                ADD     A,R0
-0019 28                ADD     A,R0
-001A 73                JMP     @A+DPTR
-001B         ?C0090:
-001B 020000      R     LJMP    ?C0012
-001E 020000      R     LJMP    ?C0013
-0021 020000      R     LJMP    ?C0014
-0024 020000      R     LJMP    ?C0015
-0027 020000      R     LJMP    ?C0016
-002A 020000      R     LJMP    ?C0017
-002D 020000      R     LJMP    ?C0018
-0030 020000      R     LJMP    ?C0019
-0033 020000      R     LJMP    ?C0020
-0036 020000      R     LJMP    ?C0021
+0007 ED                MOV     A,R5
+0008 B40A00            CJNE    A,#0AH,?C0087
+000B         ?C0087:
+000B 504D              JNC     ?C0022
+000D 900000      R     MOV     DPTR,#?C0088
+0010 F8                MOV     R0,A
+0011 28                ADD     A,R0
+C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:52:14 PAGE 13  
+
+0012 28                ADD     A,R0
+0013 73                JMP     @A+DPTR
+0014         ?C0088:
+0014 020000      R     LJMP    ?C0012
+0017 020000      R     LJMP    ?C0013
+001A 020000      R     LJMP    ?C0014
+001D 020000      R     LJMP    ?C0015
+0020 020000      R     LJMP    ?C0016
+0023 020000      R     LJMP    ?C0017
+0026 020000      R     LJMP    ?C0018
+0029 020000      R     LJMP    ?C0019
+002C 020000      R     LJMP    ?C0020
+002F 020000      R     LJMP    ?C0021
                                            ; SOURCE LINE # 105
                                            ; SOURCE LINE # 106
-0039         ?C0012:
+0032         ?C0012:
                                            ; SOURCE LINE # 107
-0039 7F30              MOV     R7,#030H
+0032 7F30              MOV     R7,#030H
                                            ; SOURCE LINE # 108
                                            ; SOURCE LINE # 109
-003B 8026              SJMP    ?C0100
+0034 8026              SJMP    ?C0098
                                            ; SOURCE LINE # 110
-003D         ?C0013:
+0036         ?C0013:
                                            ; SOURCE LINE # 111
-003D 7F31              MOV     R7,#031H
-003F         ?C0091:
+0036 7F31              MOV     R7,#031H
+0038         ?C0089:
                                            ; SOURCE LINE # 112
                                            ; SOURCE LINE # 113
-003F 8022              SJMP    ?C0100
+0038 8022              SJMP    ?C0098
                                            ; SOURCE LINE # 114
-0041         ?C0014:
+003A         ?C0014:
                                            ; SOURCE LINE # 115
-0041 7F32              MOV     R7,#032H
-0043         ?C0092:
+003A 7F32              MOV     R7,#032H
+003C         ?C0090:
                                            ; SOURCE LINE # 116
                                            ; SOURCE LINE # 117
-0043 801E              SJMP    ?C0100
+003C 801E              SJMP    ?C0098
                                            ; SOURCE LINE # 118
-0045         ?C0015:
+003E         ?C0015:
                                            ; SOURCE LINE # 119
-0045 7F33              MOV     R7,#033H
-0047         ?C0093:
+003E 7F33              MOV     R7,#033H
+0040         ?C0091:
                                            ; SOURCE LINE # 120
                                            ; SOURCE LINE # 121
-0047 801A              SJMP    ?C0100
+0040 801A              SJMP    ?C0098
                                            ; SOURCE LINE # 122
-0049         ?C0016:
+0042         ?C0016:
                                            ; SOURCE LINE # 123
-0049 7F34              MOV     R7,#034H
-004B         ?C0094:
-C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:37:11 PAGE 15  
-
+0042 7F34              MOV     R7,#034H
+0044         ?C0092:
                                            ; SOURCE LINE # 124
                                            ; SOURCE LINE # 125
-004B 8016              SJMP    ?C0100
+0044 8016              SJMP    ?C0098
                                            ; SOURCE LINE # 126
-004D         ?C0017:
+0046         ?C0017:
                                            ; SOURCE LINE # 127
-004D 7F35              MOV     R7,#035H
-004F         ?C0095:
+0046 7F35              MOV     R7,#035H
+0048         ?C0093:
                                            ; SOURCE LINE # 128
                                            ; SOURCE LINE # 129
-004F 8012              SJMP    ?C0100
+0048 8012              SJMP    ?C0098
                                            ; SOURCE LINE # 130
-0051         ?C0018:
+C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:52:14 PAGE 14  
+
+004A         ?C0018:
                                            ; SOURCE LINE # 131
-0051 7F36              MOV     R7,#036H
-0053         ?C0096:
+004A 7F36              MOV     R7,#036H
+004C         ?C0094:
                                            ; SOURCE LINE # 132
                                            ; SOURCE LINE # 133
-0053 800E              SJMP    ?C0100
+004C 800E              SJMP    ?C0098
                                            ; SOURCE LINE # 134
-0055         ?C0019:
+004E         ?C0019:
                                            ; SOURCE LINE # 135
-0055 7F37              MOV     R7,#037H
-0057         ?C0097:
+004E 7F37              MOV     R7,#037H
+0050         ?C0095:
                                            ; SOURCE LINE # 136
                                            ; SOURCE LINE # 137
-0057 800A              SJMP    ?C0100
+0050 800A              SJMP    ?C0098
                                            ; SOURCE LINE # 138
-0059         ?C0020:
+0052         ?C0020:
                                            ; SOURCE LINE # 139
-0059 7F38              MOV     R7,#038H
-005B         ?C0098:
+0052 7F38              MOV     R7,#038H
+0054         ?C0096:
                                            ; SOURCE LINE # 140
                                            ; SOURCE LINE # 141
-005B 8006              SJMP    ?C0100
+0054 8006              SJMP    ?C0098
                                            ; SOURCE LINE # 142
-005D         ?C0021:
+0056         ?C0021:
                                            ; SOURCE LINE # 143
-005D 7F39              MOV     R7,#039H
-005F         ?C0099:
+0056 7F39              MOV     R7,#039H
+0058         ?C0097:
                                            ; SOURCE LINE # 144
                                            ; SOURCE LINE # 145
-005F 8002              SJMP    ?C0100
+0058 8002              SJMP    ?C0098
                                            ; SOURCE LINE # 146
-0061         ?C0022:
+005A         ?C0022:
                                            ; SOURCE LINE # 147
-0061 7F2E              MOV     R7,#02EH
-0063         ?C0100:
-0063 120000      R     LCALL   _lcd_wdata
+005A 7F2E              MOV     R7,#02EH
+005C         ?C0098:
+005C 120000      R     LCALL   _lcd_wdata
                                            ; SOURCE LINE # 148
-0066 120000      R     LCALL   L?0102
+005F 7F02              MOV     R7,#02H
+0061 120000      R     LCALL   _delayms
                                            ; SOURCE LINE # 149
                                            ; SOURCE LINE # 150
                                            ; SOURCE LINE # 151
-0069         ?C0023:
-0069 22                RET     
+0064         ?C0023:
+0064 22                RET     
              ; FUNCTION _lcd_display (END)
 
              ; FUNCTION _fin_display (BEGIN)
                                            ; SOURCE LINE # 154
-0000 8E00        R     MOV     a,R6
-0002 8F00        R     MOV     a+01H,R7
-C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:37:11 PAGE 16  
-
-0004 8C00        R     MOV     b,R4
-0006 8D00        R     MOV     b+01H,R5
-0008 8A00        R     MOV     c,R2
-000A 8B00        R     MOV     c+01H,R3
+0000 8C00        R     MOV     b,R4
+0002 8D00        R     MOV     b+01H,R5
+;---- Variable 'a' assigned to Register 'R1' ----
+0004 A907              MOV     R1,AR7
+;---- Variable 'c' assigned to Register 'R2/R3' ----
                                            ; SOURCE LINE # 155
                                            ; SOURCE LINE # 156
-000C 7F86              MOV     R7,#086H
-000E 120000      R     LCALL   _lcd_wcom
+0006 7F86              MOV     R7,#086H
+0008 120000      R     LCALL   _lcd_wcom
                                            ; SOURCE LINE # 157
-0011 7F4D              MOV     R7,#04DH
-0013 120000      R     LCALL   _lcd_wdata
+000B 7F4D              MOV     R7,#04DH
+000D 120000      R     LCALL   _lcd_wdata
                                            ; SOURCE LINE # 158
-0016 120000      R     LCALL   L?0102
+C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:52:14 PAGE 15  
+
+0010 7F02              MOV     R7,#02H
+0012 120000      R     LCALL   _delayms
                                            ; SOURCE LINE # 160
-0019 7F85              MOV     R7,#085H
-001B 120000      R     LCALL   _lcd_wcom
+0015 7F85              MOV     R7,#085H
+0017 120000      R     LCALL   _lcd_wcom
                                            ; SOURCE LINE # 161
-001E 7F43              MOV     R7,#043H
-0020 120000      R     LCALL   _lcd_wdata
+001A 7F43              MOV     R7,#043H
+001C 120000      R     LCALL   _lcd_wdata
                                            ; SOURCE LINE # 162
-0023 120000      R     LCALL   L?0102
+001F 7F02              MOV     R7,#02H
+0021 120000      R     LCALL   _delayms
                                            ; SOURCE LINE # 164
-0026 7D05              MOV     R5,#05H
-0028 7C00              MOV     R4,#00H
-002A 7F05              MOV     R7,#05H
-002C 7E00              MOV     R6,#00H
-002E 120000      R     LCALL   _lcd_display
+0024 7D05              MOV     R5,#05H
+0026 7F05              MOV     R7,#05H
+0028 120000      R     LCALL   _lcd_display
                                            ; SOURCE LINE # 165
-0031 7D2E              MOV     R5,#02EH
-0033 7C00              MOV     R4,#00H
-0035 7F04              MOV     R7,#04H
-0037 7E00              MOV     R6,#00H
-0039 120000      R     LCALL   _lcd_display
+002B 7D2E              MOV     R5,#02EH
+002D 7F04              MOV     R7,#04H
+002F 120000      R     LCALL   _lcd_display
                                            ; SOURCE LINE # 166
-003C AD00        R     MOV     R5,c+01H
-003E AC00        R     MOV     R4,c
-0040 7F03              MOV     R7,#03H
-0042 7E00              MOV     R6,#00H
-0044 120000      R     LCALL   _lcd_display
+0032 AD03              MOV     R5,AR3
+0034 7F03              MOV     R7,#03H
+0036 120000      R     LCALL   _lcd_display
                                            ; SOURCE LINE # 167
-0047 AD00        R     MOV     R5,b+01H
-0049 AC00        R     MOV     R4,b
-004B 7F02              MOV     R7,#02H
-004D 7E00              MOV     R6,#00H
-004F 120000      R     LCALL   _lcd_display
+0039 AD00        R     MOV     R5,b+01H
+003B 7F02              MOV     R7,#02H
+003D 120000      R     LCALL   _lcd_display
                                            ; SOURCE LINE # 168
-0052 AD00        R     MOV     R5,a+01H
-0054 AC00        R     MOV     R4,a
-0056 7F01              MOV     R7,#01H
-0058 7E00              MOV     R6,#00H
-005A 020000      R     LJMP    _lcd_display
+0040 AD01              MOV     R5,AR1
+0042 7F01              MOV     R7,#01H
+0044 020000      R     LJMP    _lcd_display
              ; FUNCTION _fin_display (END)
 
              ; FUNCTION UART_init (BEGIN)
@@ -1009,8 +938,6 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0003 758920            MOV     TMOD,#020H
                                            ; SOURCE LINE # 193
 0006 758869            MOV     TCON,#069H
-C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:37:11 PAGE 17  
-
                                            ; SOURCE LINE # 194
 0009 758DFD            MOV     TH1,#0FDH
                                            ; SOURCE LINE # 195
@@ -1023,14 +950,16 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0012 22                RET     
              ; FUNCTION UART_init (END)
 
-             ; FUNCTION L?0104 (BEGIN)
-0000         L?0105:
+             ; FUNCTION L?0101 (BEGIN)
+0000         L?0102:
 0000 2E                ADD     A,R6
 0001 F8                MOV     R0,A
 0002 E6                MOV     A,@R0
 0003 FF                MOV     R7,A
              ; FUNCTION _UARTSnd (BEGIN)
                                            ; SOURCE LINE # 200
+C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:52:14 PAGE 16  
+
 ;---- Variable 'dat' assigned to Register 'R7' ----
                                            ; SOURCE LINE # 201
                                            ; SOURCE LINE # 203
@@ -1047,47 +976,45 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
              ; FUNCTION MeterByTrig (BEGIN)
                                            ; SOURCE LINE # 230
                                            ; SOURCE LINE # 231
-                                           ; SOURCE LINE # 247
+                                           ; SOURCE LINE # 236
 0000 5389F1            ANL     TMOD,#0F1H
-                                           ; SOURCE LINE # 250
+                                           ; SOURCE LINE # 239
 0003 E4                CLR     A
 0004 F58C              MOV     TH0,A
-                                           ; SOURCE LINE # 251
+                                           ; SOURCE LINE # 240
 0006 F58A              MOV     TL0,A
-                                           ; SOURCE LINE # 254
+                                           ; SOURCE LINE # 243
 0008 C2A1              CLR     Trig_Pin
-                                           ; SOURCE LINE # 255
+                                           ; SOURCE LINE # 244
 000A D2A1              SETB    Trig_Pin
-                                           ; SOURCE LINE # 256
+                                           ; SOURCE LINE # 245
 000C 00                NOP     
-                                           ; SOURCE LINE # 257
+                                           ; SOURCE LINE # 246
 ;---- Variable 'tempi' assigned to Register 'R7' ----
 000D 7F19              MOV     R7,#019H
 000F         ?C0029:
-                                           ; SOURCE LINE # 258
+                                           ; SOURCE LINE # 247
 000F DFFE              DJNZ    R7,?C0029
-                                           ; SOURCE LINE # 260
+                                           ; SOURCE LINE # 249
 0011 C2A1              CLR     Trig_Pin
 0013         ?C0031:
-                                           ; SOURCE LINE # 290
+                                           ; SOURCE LINE # 251
 0013 30A0FD            JNB     Echo_Pin,?C0031
-                                           ; SOURCE LINE # 292
+                                           ; SOURCE LINE # 253
 0016 D28C              SETB    TR0
-C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:37:11 PAGE 18  
-
 0018         ?C0033:
-                                           ; SOURCE LINE # 293
+                                           ; SOURCE LINE # 254
 0018 20A0FD            JB      Echo_Pin,?C0033
-                                           ; SOURCE LINE # 295
+                                           ; SOURCE LINE # 256
 001B C28C              CLR     TR0
-                                           ; SOURCE LINE # 298
+                                           ; SOURCE LINE # 258
 001D AF8C              MOV     R7,TH0
 001F E4                CLR     A
 0020 8F00        R     MOV     PresentTime+03H,R7
 0022 F500        R     MOV     PresentTime+02H,A
 0024 F500        R     MOV     PresentTime+01H,A
 0026 F500        R     MOV     PresentTime,A
-                                           ; SOURCE LINE # 299
+                                           ; SOURCE LINE # 259
 0028 AE00        R     MOV     R6,PresentTime+02H
 002A AD00        R     MOV     R5,PresentTime+01H
 002C AC00        R     MOV     R4,PresentTime
@@ -1095,9 +1022,11 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0030 120000      E     LCALL   ?C?LSHL
 0033 8F00        R     MOV     PresentTime+03H,R7
 0035 8E00        R     MOV     PresentTime+02H,R6
+C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:52:14 PAGE 17  
+
 0037 8D00        R     MOV     PresentTime+01H,R5
 0039 8C00        R     MOV     PresentTime,R4
-                                           ; SOURCE LINE # 300
+                                           ; SOURCE LINE # 260
 003B AF8A              MOV     R7,TL0
 003D E4                CLR     A
 003E FC                MOV     R4,A
@@ -1115,7 +1044,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0050 EC                MOV     A,R4
 0051 3500        R     ADDC    A,PresentTime
 0053 F500        R     MOV     PresentTime,A
-                                           ; SOURCE LINE # 307
+                                           ; SOURCE LINE # 265
 0055 AF00        R     MOV     R7,PresentTime+03H
 0057 AE00        R     MOV     R6,PresentTime+02H
 0059 AD00        R     MOV     R5,PresentTime+01H
@@ -1124,29 +1053,27 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 005D 120000      E     LCALL   ?C?FCASTL
 0060 7B99              MOV     R3,#099H
 0062 7ABB              MOV     R2,#0BBH
-0064 7916              MOV     R1,#016H
-0066 783B              MOV     R0,#03BH
+0064 7996              MOV     R1,#096H
+0066 783C              MOV     R0,#03CH
 0068 120000      E     LCALL   ?C?FPMUL
 006B 120000      E     LCALL   ?C?CASTF
 006E 8F00        R     MOV     PresentTime+03H,R7
 0070 8E00        R     MOV     PresentTime+02H,R6
 0072 8D00        R     MOV     PresentTime+01H,R5
 0074 8C00        R     MOV     PresentTime,R4
-                                           ; SOURCE LINE # 318
-                                           ; SOURCE LINE # 319
+                                           ; SOURCE LINE # 269
+                                           ; SOURCE LINE # 270
 0076 22                RET     
              ; FUNCTION MeterByTrig (END)
 
-C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:37:11 PAGE 19  
-
              ; FUNCTION _DisplayLength (BEGIN)
-                                           ; SOURCE LINE # 401
+                                           ; SOURCE LINE # 352
 0000 8F00        R     MOV     number+03H,R7
 0002 8E00        R     MOV     number+02H,R6
 0004 8D00        R     MOV     number+01H,R5
 0006 8C00        R     MOV     number,R4
-                                           ; SOURCE LINE # 402
-                                           ; SOURCE LINE # 404
+                                           ; SOURCE LINE # 353
+                                           ; SOURCE LINE # 355
 0008 E4                CLR     A
 0009 7FE7              MOV     R7,#0E7H
 000B 7E03              MOV     R6,#03H
@@ -1159,14 +1086,16 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0017 D3                SETB    C
 0018 120000      E     LCALL   ?C?ULCMP
 001B 4009              JC      ?C0036
-                                           ; SOURCE LINE # 405
+C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:52:14 PAGE 18  
+
+                                           ; SOURCE LINE # 356
 001D E4                CLR     A
 001E F500        R     MOV     number+03H,A
 0020 F500        R     MOV     number+02H,A
 0022 F500        R     MOV     number+01H,A
 0024 F500        R     MOV     number,A
 0026         ?C0036:
-                                           ; SOURCE LINE # 409
+                                           ; SOURCE LINE # 360
 0026 E4                CLR     A
 0027 7B64              MOV     R3,#064H
 0029 FA                MOV     R2,A
@@ -1178,7 +1107,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0032 AC00        R     MOV     R4,number
 0034 120000      E     LCALL   ?C?ULDIV
 0037 8F00        R     MOV     Hundred,R7
-                                           ; SOURCE LINE # 411
+                                           ; SOURCE LINE # 362
 0039 AF00        R     MOV     R7,number+03H
 003B AE00        R     MOV     R6,number+02H
 003D AD00        R     MOV     R5,number+01H
@@ -1197,17 +1126,15 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0054 8E00        R     MOV     number+02H,R6
 0056 8D00        R     MOV     number+01H,R5
 0058 8C00        R     MOV     number,R4
-                                           ; SOURCE LINE # 412
+                                           ; SOURCE LINE # 363
 005A E4                CLR     A
 005B 7B0A              MOV     R3,#0AH
 005D FA                MOV     R2,A
-C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:37:11 PAGE 20  
-
 005E F9                MOV     R1,A
 005F F8                MOV     R0,A
 0060 120000      E     LCALL   ?C?ULDIV
 0063 8F00        R     MOV     Decade,R7
-                                           ; SOURCE LINE # 414
+                                           ; SOURCE LINE # 365
 0065 E4                CLR     A
 0066 7B0A              MOV     R3,#0AH
 0068 FA                MOV     R2,A
@@ -1218,108 +1145,110 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 006F AD00        R     MOV     R5,number+01H
 0071 AC00        R     MOV     R4,number
 0073 120000      E     LCALL   ?C?ULDIV
-;---- Variable 'Unit' assigned to Register 'R3' ----
-                                           ; SOURCE LINE # 416
-0076 AF00        R     MOV     R7,Hundred
-0078 7E00              MOV     R6,#00H
-007A AD00        R     MOV     R5,Decade
-007C 7C00              MOV     R4,#00H
-007E 7A00              MOV     R2,#00H
-0080 020000      R     LJMP    _fin_display
+;---- Variable 'Unit' assigned to Register 'R7' ----
+                                           ; SOURCE LINE # 367
+0076 E500        R     MOV     A,Decade
+0078 FD                MOV     R5,A
+0079 7C00              MOV     R4,#00H
+C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:52:14 PAGE 19  
+
+007B 7A00              MOV     R2,#00H
+007D AF00        R     MOV     R7,Hundred
+007F 020000      R     LJMP    _fin_display
              ; FUNCTION _DisplayLength (END)
 
-             ; FUNCTION L?0103 (BEGIN)
+             ; FUNCTION L?0100 (BEGIN)
 0000 7D00              MOV     R5,#00H
 0002 7BFF              MOV     R3,#0FFH
 0004 7E00              MOV     R6,#00H
 0006 120000      E     LCALL   ?C?COPY
              ; FUNCTION Delay20ms (BEGIN)
-                                           ; SOURCE LINE # 471
-                                           ; SOURCE LINE # 472
-                                           ; SOURCE LINE # 475
+                                           ; SOURCE LINE # 422
+                                           ; SOURCE LINE # 423
+                                           ; SOURCE LINE # 426
 ;---- Variable 'i' assigned to Register 'R7' ----
 0009 7F24              MOV     R7,#024H
-                                           ; SOURCE LINE # 476
+                                           ; SOURCE LINE # 427
 ;---- Variable 'j' assigned to Register 'R6' ----
 000B 7ED9              MOV     R6,#0D9H
-                                           ; SOURCE LINE # 478
+                                           ; SOURCE LINE # 429
 000D         ?C0041:
-                                           ; SOURCE LINE # 479
+                                           ; SOURCE LINE # 430
 000D DEFE              DJNZ    R6,?C0041
-                                           ; SOURCE LINE # 481
+                                           ; SOURCE LINE # 432
 000F DFFC              DJNZ    R7,?C0041
-                                           ; SOURCE LINE # 482
+                                           ; SOURCE LINE # 433
 0011 22                RET     
              ; FUNCTION Delay20ms (END)
 
              ; FUNCTION Delay5s (BEGIN)
-                                           ; SOURCE LINE # 484
-                                           ; SOURCE LINE # 485
-                                           ; SOURCE LINE # 488
+                                           ; SOURCE LINE # 435
+                                           ; SOURCE LINE # 436
+                                           ; SOURCE LINE # 439
 0000 00                NOP     
-                                           ; SOURCE LINE # 489
+                                           ; SOURCE LINE # 440
 ;---- Variable 'i' assigned to Register 'R7' ----
 0001 7F24              MOV     R7,#024H
-                                           ; SOURCE LINE # 490
+                                           ; SOURCE LINE # 441
 ;---- Variable 'j' assigned to Register 'R6' ----
 0003 7E05              MOV     R6,#05H
-                                           ; SOURCE LINE # 491
+                                           ; SOURCE LINE # 442
 ;---- Variable 'k' assigned to Register 'R5' ----
-C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:37:11 PAGE 21  
-
 0005 7DD3              MOV     R5,#0D3H
-                                           ; SOURCE LINE # 493
-                                           ; SOURCE LINE # 495
+                                           ; SOURCE LINE # 444
+                                           ; SOURCE LINE # 446
 0007         ?C0050:
-                                           ; SOURCE LINE # 496
+                                           ; SOURCE LINE # 447
 0007 DDFE              DJNZ    R5,?C0050
-                                           ; SOURCE LINE # 498
+                                           ; SOURCE LINE # 449
 0009 DEFC              DJNZ    R6,?C0050
-                                           ; SOURCE LINE # 499
+                                           ; SOURCE LINE # 450
 000B DFFA              DJNZ    R7,?C0050
-                                           ; SOURCE LINE # 500
+                                           ; SOURCE LINE # 451
 000D 22                RET     
              ; FUNCTION Delay5s (END)
 
              ; FUNCTION Delay1s (BEGIN)
-                                           ; SOURCE LINE # 502
-                                           ; SOURCE LINE # 503
-                                           ; SOURCE LINE # 506
+                                           ; SOURCE LINE # 453
+                                           ; SOURCE LINE # 454
+                                           ; SOURCE LINE # 457
 0000 00                NOP     
-                                           ; SOURCE LINE # 507
+                                           ; SOURCE LINE # 458
+C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:52:14 PAGE 20  
+
 ;---- Variable 'i' assigned to Register 'R7' ----
 0001 7F0B              MOV     R7,#0BH
-                                           ; SOURCE LINE # 508
+                                           ; SOURCE LINE # 459
 ;---- Variable 'j' assigned to Register 'R6' ----
 0003 7E82              MOV     R6,#082H
-                                           ; SOURCE LINE # 509
+                                           ; SOURCE LINE # 460
 ;---- Variable 'k' assigned to Register 'R5' ----
 0005 7D6F              MOV     R5,#06FH
-                                           ; SOURCE LINE # 511
-                                           ; SOURCE LINE # 513
+                                           ; SOURCE LINE # 462
+                                           ; SOURCE LINE # 464
 0007         ?C0059:
-                                           ; SOURCE LINE # 514
+                                           ; SOURCE LINE # 465
 0007 DDFE              DJNZ    R5,?C0059
-                                           ; SOURCE LINE # 516
+                                           ; SOURCE LINE # 467
 0009 DEFC              DJNZ    R6,?C0059
-                                           ; SOURCE LINE # 517
+                                           ; SOURCE LINE # 468
 000B DFFA              DJNZ    R7,?C0059
-                                           ; SOURCE LINE # 518
+                                           ; SOURCE LINE # 469
 000D 22                RET     
              ; FUNCTION Delay1s (END)
 
              ; FUNCTION greater_than_1m (BEGIN)
-                                           ; SOURCE LINE # 531
-                                           ; SOURCE LINE # 532
-                                           ; SOURCE LINE # 534
+                                           ; SOURCE LINE # 482
+                                           ; SOURCE LINE # 483
+                                           ; SOURCE LINE # 485
 0000 7800        R     MOV     R0,#LOW greater_than_1m
 0002 7C00        R     MOV     R4,#HIGH greater_than_1m
 0004 7A00        R     MOV     R2,#HIGH _?ix1000
 0006 7900        R     MOV     R1,#LOW _?ix1000
 0008 7F14              MOV     R7,#014H
-                                           ; SOURCE LINE # 535
-000A 120000      R     LCALL   L?0103
-                                           ; SOURCE LINE # 536
+                                           ; SOURCE LINE # 486
+000A 120000      R     LCALL   L?0100
+                                           ; SOURCE LINE # 487
 ;---- Variable 'tempj' assigned to Register 'R6' ----
 000D E4                CLR     A
 000E FE                MOV     R6,A
@@ -1329,33 +1258,33 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0011 9414              SUBB    A,#014H
 0013 7480              MOV     A,#080H
 0015 9480              SUBB    A,#080H
-C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:37:11 PAGE 22  
-
 0017 5008              JNC     ?C0063
-                                           ; SOURCE LINE # 537
-                                           ; SOURCE LINE # 538
+                                           ; SOURCE LINE # 488
+                                           ; SOURCE LINE # 489
 0019 7400        R     MOV     A,#LOW greater_than_1m
-001B 120000      R     LCALL   L?0104
-                                           ; SOURCE LINE # 539
+001B 120000      R     LCALL   L?0101
+                                           ; SOURCE LINE # 490
 001E 0E                INC     R6
 001F 80EE              SJMP    ?C0062
 0021         ?C0063:
-                                           ; SOURCE LINE # 540
+                                           ; SOURCE LINE # 491
 0021 020000      R     LJMP    Delay5s
              ; FUNCTION greater_than_1m (END)
 
              ; FUNCTION less_than_1m (BEGIN)
-                                           ; SOURCE LINE # 543
-                                           ; SOURCE LINE # 544
-                                           ; SOURCE LINE # 546
+                                           ; SOURCE LINE # 494
+                                           ; SOURCE LINE # 495
+                                           ; SOURCE LINE # 497
 0000 7800        R     MOV     R0,#LOW less_than_1m
 0002 7C00        R     MOV     R4,#HIGH less_than_1m
 0004 7A00        R     MOV     R2,#HIGH _?ix1001
+C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:52:14 PAGE 21  
+
 0006 7900        R     MOV     R1,#LOW _?ix1001
 0008 7F0E              MOV     R7,#0EH
-                                           ; SOURCE LINE # 547
-000A 120000      R     LCALL   L?0103
-                                           ; SOURCE LINE # 548
+                                           ; SOURCE LINE # 498
+000A 120000      R     LCALL   L?0100
+                                           ; SOURCE LINE # 499
 ;---- Variable 'tempj' assigned to Register 'R6' ----
 000D E4                CLR     A
 000E FE                MOV     R6,A
@@ -1366,22 +1295,22 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0013 7480              MOV     A,#080H
 0015 9480              SUBB    A,#080H
 0017 5008              JNC     ?C0067
-                                           ; SOURCE LINE # 549
-                                           ; SOURCE LINE # 550
+                                           ; SOURCE LINE # 500
+                                           ; SOURCE LINE # 501
 0019 7400        R     MOV     A,#LOW less_than_1m
-001B 120000      R     LCALL   L?0104
-                                           ; SOURCE LINE # 551
+001B 120000      R     LCALL   L?0101
+                                           ; SOURCE LINE # 502
 001E 0E                INC     R6
 001F 80EE              SJMP    ?C0066
 0021         ?C0067:
-                                           ; SOURCE LINE # 552
+                                           ; SOURCE LINE # 503
 0021 020000      R     LJMP    Delay1s
              ; FUNCTION less_than_1m (END)
 
              ; FUNCTION main (BEGIN)
-                                           ; SOURCE LINE # 555
-                                           ; SOURCE LINE # 556
-                                           ; SOURCE LINE # 561
+                                           ; SOURCE LINE # 506
+                                           ; SOURCE LINE # 507
+                                           ; SOURCE LINE # 512
 0000 7800        R     MOV     R0,#LOW greater_than_2m
 0002 7C00        R     MOV     R4,#HIGH greater_than_2m
 0004 7D00              MOV     R5,#00H
@@ -1391,30 +1320,30 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 000C 7E00              MOV     R6,#00H
 000E 7F14              MOV     R7,#014H
 0010 120000      E     LCALL   ?C?COPY
-                                           ; SOURCE LINE # 563
+                                           ; SOURCE LINE # 514
 0013 120000      R     LCALL   lcd_init
-C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:37:11 PAGE 23  
-
-                                           ; SOURCE LINE # 564
+                                           ; SOURCE LINE # 515
 0016 120000      R     LCALL   UART_init
 0019         ?C0070:
-                                           ; SOURCE LINE # 588
-                                           ; SOURCE LINE # 589
-                                           ; SOURCE LINE # 590
+                                           ; SOURCE LINE # 539
+                                           ; SOURCE LINE # 540
+                                           ; SOURCE LINE # 541
 0019 120000      R     LCALL   MeterByTrig
 001C 8F00        R     MOV     PreLength+03H,R7
 001E 8E00        R     MOV     PreLength+02H,R6
 0020 8D00        R     MOV     PreLength+01H,R5
 0022 8C00        R     MOV     PreLength,R4
-                                           ; SOURCE LINE # 591
+                                           ; SOURCE LINE # 542
 0024 120000      R     LCALL   _DisplayLength
-                                           ; SOURCE LINE # 617
+                                           ; SOURCE LINE # 568
 0027 20913F            JB      Mode_1,?C0072
-                                           ; SOURCE LINE # 618
-                                           ; SOURCE LINE # 619
+                                           ; SOURCE LINE # 569
+                                           ; SOURCE LINE # 570
 002A E4                CLR     A
 002B 7FC8              MOV     R7,#0C8H
 002D FE                MOV     R6,A
+C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:52:14 PAGE 22  
+
 002E FD                MOV     R5,A
 002F FC                MOV     R4,A
 0030 AB00        R     MOV     R3,PreLength+03H
@@ -1424,8 +1353,8 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0038 D3                SETB    C
 0039 120000      E     LCALL   ?C?ULCMP
 003C 40DB              JC      ?C0070
-                                           ; SOURCE LINE # 620
-                                           ; SOURCE LINE # 621
+                                           ; SOURCE LINE # 571
+                                           ; SOURCE LINE # 572
 ;---- Variable 'i' assigned to Register 'R5' ----
 003E E4                CLR     A
 003F FD                MOV     R5,A
@@ -1436,10 +1365,10 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0044 7480              MOV     A,#080H
 0046 9480              SUBB    A,#080H
 0048 501A              JNC     ?C0075
-                                           ; SOURCE LINE # 622
-                                           ; SOURCE LINE # 623
+                                           ; SOURCE LINE # 573
+                                           ; SOURCE LINE # 574
 004A 120000      R     LCALL   Delay20ms
-                                           ; SOURCE LINE # 624
+                                           ; SOURCE LINE # 575
 ;---- Variable 'tempj' assigned to Register 'R6' ----
 004D E4                CLR     A
 004E FE                MOV     R6,A
@@ -1450,35 +1379,35 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0053 7480              MOV     A,#080H
 0055 9480              SUBB    A,#080H
 0057 5008              JNC     ?C0076
-                                           ; SOURCE LINE # 625
-                                           ; SOURCE LINE # 626
+                                           ; SOURCE LINE # 576
+                                           ; SOURCE LINE # 577
 0059 7400        R     MOV     A,#LOW greater_than_2m
-005B 120000      R     LCALL   L?0105
-                                           ; SOURCE LINE # 627
+005B 120000      R     LCALL   L?0102
+                                           ; SOURCE LINE # 578
 005E 0E                INC     R6
 005F 80EE              SJMP    ?C0077
-C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:37:11 PAGE 24  
-
-                                           ; SOURCE LINE # 628
+                                           ; SOURCE LINE # 579
 0061         ?C0076:
 0061 0D                INC     R5
 0062 80DC              SJMP    ?C0074
 0064         ?C0075:
-                                           ; SOURCE LINE # 629
+                                           ; SOURCE LINE # 580
 0064 120000      R     LCALL   Delay5s
-                                           ; SOURCE LINE # 630
-                                           ; SOURCE LINE # 631
+                                           ; SOURCE LINE # 581
+                                           ; SOURCE LINE # 582
 0067 80B0              SJMP    ?C0070
 0069         ?C0072:
-                                           ; SOURCE LINE # 632
+                                           ; SOURCE LINE # 583
 0069 209227            JB      Mode_2,?C0081
-                                           ; SOURCE LINE # 633
-                                           ; SOURCE LINE # 634
+                                           ; SOURCE LINE # 584
+                                           ; SOURCE LINE # 585
 006C E4                CLR     A
 006D 7FC8              MOV     R7,#0C8H
 006F FE                MOV     R6,A
 0070 FD                MOV     R5,A
 0071 FC                MOV     R4,A
+C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:52:14 PAGE 23  
+
 0072 AB00        R     MOV     R3,PreLength+03H
 0074 AA00        R     MOV     R2,PreLength+02H
 0076 A900        R     MOV     R1,PreLength+01H
@@ -1495,17 +1424,17 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0088 C3                CLR     C
 0089 120000      E     LCALL   ?C?ULCMP
 008C 408B              JC      ?C0070
-                                           ; SOURCE LINE # 635
-                                           ; SOURCE LINE # 636
+                                           ; SOURCE LINE # 586
+                                           ; SOURCE LINE # 587
 008E 120000      R     LCALL   greater_than_1m
-                                           ; SOURCE LINE # 637
-                                           ; SOURCE LINE # 638
+                                           ; SOURCE LINE # 588
+                                           ; SOURCE LINE # 589
 0091 8086              SJMP    ?C0070
 0093         ?C0081:
-                                           ; SOURCE LINE # 639
+                                           ; SOURCE LINE # 590
 0093 209383            JB      Mode_3,?C0070
-                                           ; SOURCE LINE # 640
-                                           ; SOURCE LINE # 641
+                                           ; SOURCE LINE # 591
+                                           ; SOURCE LINE # 592
 0096 E4                CLR     A
 0097 7F64              MOV     R7,#064H
 0099 FE                MOV     R6,A
@@ -1519,30 +1448,30 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 00A5 120000      E     LCALL   ?C?ULCMP
 00A8 4003              JC      $ + 5H
 00AA 020000      R     LJMP    ?C0070
-                                           ; SOURCE LINE # 642
-                                           ; SOURCE LINE # 643
-C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:37:11 PAGE 25  
-
+                                           ; SOURCE LINE # 593
+                                           ; SOURCE LINE # 594
 00AD 120000      R     LCALL   less_than_1m
-                                           ; SOURCE LINE # 644
-                                           ; SOURCE LINE # 645
-                                           ; SOURCE LINE # 655
+                                           ; SOURCE LINE # 595
+                                           ; SOURCE LINE # 596
+                                           ; SOURCE LINE # 606
 00B0 020000      R     LJMP    ?C0070
              ; FUNCTION main (END)
 
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    867    ----
+   CODE SIZE        =    833    ----
    CONSTANT SIZE    =     54    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =   ----      74
+   DATA SIZE        =   ----      70
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
    EDATA SIZE       =   ----    ----
    HDATA SIZE       =   ----    ----
    XDATA CONST SIZE =   ----    ----
+C51 COMPILER V9.59.0.0   MAIN                                                              08/24/2020 21:52:14 PAGE 24  
+
    FAR CONST SIZE   =   ----    ----
 END OF MODULE INFORMATION.
 

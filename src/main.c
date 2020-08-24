@@ -47,9 +47,9 @@ sbit lcdrw = P3 ^ 6; //读写控制端：rw=1,读；rw=0,写
 // int W1,W2,W3,W4,W5,W6,W7;
 
 /***********延时函数******************/
-void delayms(uint16_t time)
+void delayms(uint8_t time)
 {
-    uint16_t i;
+    uint8_t i;
     for (; time > 0; time--)
     {
         for (i = 0; i < 124; i++)
@@ -97,7 +97,7 @@ void lcd_init() //初始化，写入指令
 
 /**********************LCD显示子函数****************************/
 //i设置字符位置，j是显示的数字
-void lcd_display(uint16_t i, uint16_t j)
+void lcd_display(uint8_t i, uint8_t j)
 {
 
     lcd_wcom(0x80 + i - 1);
@@ -151,7 +151,7 @@ void lcd_display(uint16_t i, uint16_t j)
 }
 /*********************最终显示函数*************************************/
 //abc分别为百十个位，使用前需lcd_init()初始化
-void fin_display(uint16_t a, b, c)
+void fin_display(uint8_t a, b, c)
 {
     lcd_wcom(0x80 + 7 - 1);
     lcd_wdata('M');
@@ -229,19 +229,8 @@ void UARTSnd(uint8_t dat)
 #ifdef XTAL11M
 uint32_t MeterByTrig()
 {
-    // uint8_t tempa;
     uint8_t tempi;
-    // uint8_t IsOverFlow;
     uint32_t PresentTime;
-    // IsOverFlow = 0;
-
-    //Delay1Ms();
-
-    // P1M1 &= 0X7F;
-    // P1M2 &= 0X7F;
-
-    // P1M1 |= 0X40;
-    // P1M2 &= 0XBF;
 
     //Timer Init
     TMOD &= 0xF1;
@@ -259,34 +248,6 @@ uint32_t MeterByTrig()
         ;
     Trig_Pin = 0;
 
-    // while (1)
-    // {
-    //     if (Echo_Pin == 1)
-    //     {            //Start Timer;
-    //         TR0 = 1; //start timer
-    //         break;
-    //     }
-    //     if (TF0 == 1)
-    //     {
-    //         IsOverFlow = 1;
-    //         break; //overflow;
-    //     }
-    // }
-
-    // while (1)
-    // {
-    //     if (Echo_Pin == 0)
-    //     { //Stop Timer;
-    //         TR0 = 0;
-    //         break;
-    //     }
-    //     if (TF0 == 1)
-    //     {
-    //         IsOverFlow = 1;
-    //         break; //overflow;
-    //     }
-    // }
-
     while (!Echo_Pin)
         ;
     TR0 = 1;
@@ -294,7 +255,6 @@ uint32_t MeterByTrig()
         ;
     TR0 = 0;
 
-    //	uint32_t PresentTime, tempb;
     PresentTime = TH0;
     PresentTime <<= 8; // Equal TH0 * 256
     PresentTime += TL0;
@@ -302,19 +262,10 @@ uint32_t MeterByTrig()
     // PresentTime /= 921.6;
     // PresentTime /= 922;
     // PresentTime *= 17;
-    //  TODO
-    // PresentTime = (uint32_t)(PresentTime * 0.0184);
-    PresentTime = (uint32_t)(PresentTime * 0.0023);
+    PresentTime = PresentTime * 0.0184;
+    // PresentTime = (uint32_t)(PresentTime * 0.0023);
 
-    // tempb = PresentTime / 137;
-    // PresentTime /= 7; //*3
-
-    // PresentTime -= tempb; //time, us
-
-    // tempb = PresentTime / 150;
-    // PresentTime /= 3;
-    // PresentTime += tempb;
-    //Delay1Ms();
+    // delayms(5);
     return PresentTime;
 }
 #endif
