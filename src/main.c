@@ -5,7 +5,7 @@
  * 
  * Encoding = GBK
  * 
- * Author:W0n9
+ * Author:W0n9, SailorYan
  * 
  * *********************************************
 */
@@ -153,6 +153,14 @@ void lcd_display(uint16_t i, uint16_t j)
 //abc分别为百十个位，使用前需lcd_init()初始化
 void fin_display(uint16_t a, b, c)
 {
+    lcd_wcom(0x80 + 7 - 1);
+    lcd_wdata('M');
+    delayms(2);
+
+    lcd_wcom(0x80 + 6 - 1);
+    lcd_wdata('C');
+    delayms(2);
+
     lcd_display(5, 5);
     lcd_display(4, '.');
     lcd_display(3, c);
