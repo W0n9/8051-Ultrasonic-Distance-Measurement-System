@@ -67,3 +67,6 @@
 [2020-08-21 22:16:56]	Link failed !, Exit Code: 2
    在 ARM_Builder_V6.Program.Main(String[] args)
 
+[2020-08-24 21:36:11]	compilation failed at : "c:\Users\hcy67\OneDrive\文档\生产实习\Product\8051-Ultrasonic-Distance-Measurement-System\src\main.c", exit code: 2
+   在 ARM_Builder_V6.Program.Main(String[] args)
+

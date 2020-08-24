@@ -1,5 +1,5 @@
 {
-    "name": "project",
+    "name": "8051-Ultrasonic-Distance-Measurement-System",
     "type": "C51",
     "mode": "Release",
     "toolchain": "Keil_C51",
@@ -52,8 +52,8 @@
         "options": ""
     },
     "srcDirs": [
-        ".\\src",
-        ".\\dependence"
+        ".\\dependence",
+        ".\\src"
     ],
     "excludeList": [],
     "outDir": ".\\out",

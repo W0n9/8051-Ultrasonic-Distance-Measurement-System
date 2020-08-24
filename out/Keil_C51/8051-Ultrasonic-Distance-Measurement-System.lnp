@@ -1,0 +1,3 @@
+
+.\out\Keil_C51\main.o TO .\out\Keil_C51\8051-Ultrasonic-Distance-Measurement-System
+PRINT (.\out\Keil_C51\8051-Ultrasonic-Distance-Measurement-System.map) REMOVEUNUSED

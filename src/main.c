@@ -229,10 +229,10 @@ void UARTSnd(uint8_t dat)
 #ifdef XTAL11M
 uint32_t MeterByTrig()
 {
-    uint8_t tempa;
+    // uint8_t tempa;
     uint8_t tempi;
     // uint8_t IsOverFlow;
-    uint32_t PresentTime, tempb;
+    uint32_t PresentTime;
     // IsOverFlow = 0;
 
     //Delay1Ms();
@@ -296,7 +296,7 @@ uint32_t MeterByTrig()
 
     //	uint32_t PresentTime, tempb;
     PresentTime = TH0;
-    PresentTime <<= 8;
+    PresentTime <<= 8; // Equal TH0 * 256
     PresentTime += TL0;
     //921600 Cycles @11.0592MHz
     // PresentTime /= 921.6;
@@ -400,7 +400,7 @@ uint32_t MeterByTrig()
 
 void DisplayLength(uint32_t number)
 {
-    uint8_t Thousand, Hundred, Decade, Unit;
+    uint8_t Hundred, Decade, Unit;
     if (number > 999)
         number = 0;
     // Thousand = number / 1000;
@@ -554,12 +554,12 @@ void less_than_1m()
 
 void main()
 {
-    uint8_t tempa;
+    // uint8_t tempa;
     uint32_t PreLength; //  Unit is cm
     uint8_t i;
     uint8_t tempj;
     uint8_t greater_than_2m[] = {0xFD, 0x00, 0x11, 0x01, 0x01, 0x73, 0x6F, 0x75, 0x6E, 0x64, 0x6B, 0xB4, 0xF3, 0xD3, 0xDA, 0xC1, 0xBD, 0xC3, 0xD7, 0xC2};
-    uint8_t debug;
+    // uint8_t debug;
     lcd_init();
     UART_init();
 
