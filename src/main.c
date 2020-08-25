@@ -262,8 +262,9 @@ uint32_t MeterByTrig()
     // PresentTime /= 921.6;
     // PresentTime /= 922;
     // PresentTime *= 17;
-    PresentTime = PresentTime * 0.0184;
-    // PresentTime = (uint32_t)(PresentTime * 0.0023);
+    // PresentTime = (uint32_t)PresentTime * 0.0184;
+    PresentTime = (uint32_t)(PresentTime * 0.0023);
+    // PresentTime = (uint32_t)PresentTime * 0.0082;
 
     // delayms(5);
     return PresentTime;
@@ -539,7 +540,7 @@ void main()
     while (1)
     {
         PreLength = MeterByTrig();
-        DisplayLength(PreLength);
+
         // if (PreLength > 200)
         // {
         //     for (i = 0; i < 1; i++)
@@ -567,6 +568,8 @@ void main()
         // }
         if (!Mode_1)
         {
+            PreLength *= 3.565;
+            DisplayLength(PreLength);
             if (PreLength > 200)
             {
                 for (i = 0; i < 1; i++)
@@ -582,6 +585,7 @@ void main()
         }
         else if (!Mode_2)
         {
+            DisplayLength(PreLength);
             if (PreLength <= 200 && PreLength >= 100)
             {
                 greater_than_1m();
@@ -589,6 +593,7 @@ void main()
         }
         else if (!Mode_3)
         {
+            DisplayLength(PreLength);
             if (PreLength <= 100)
             {
                 less_than_1m();

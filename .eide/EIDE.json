@@ -11,7 +11,7 @@
                 {
                     "name": "default",
                     "incList": [
-                        ".\\dependence"
+                        ".\\deps"
                     ],
                     "libList": [],
                     "sourceDirList": [],
@@ -33,10 +33,10 @@
                     "name": "toolchain",
                     "incList": [
                         ".\\..\\..\\..\\..\\..\\..\\..\\Keil_v5\\C51\\INC",
-                        ".\\dependence\\build-in\\toolchain"
+                        ".\\deps\\build-in\\toolchain"
                     ],
                     "sourceDirList": [
-                        ".\\dependence\\build-in\\toolchain"
+                        ".\\deps\\build-in\\toolchain"
                     ],
                     "libList": [
                         ".\\..\\..\\..\\..\\..\\..\\..\\Keil_v5\\C51\\LIB"
@@ -52,7 +52,7 @@
         "options": ""
     },
     "srcDirs": [
-        ".\\dependence",
+        ".\\deps",
         ".\\src"
     ],
     "excludeList": [],

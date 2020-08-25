@@ -1,0 +1,1 @@
+.\src\main.c CODE PRINT (.\out\Release\main.lst) OMF2 TABS (2) OPTIMIZE (8,SPEED) SMALL ROM (LARGE) INCDIR(.\deps;.\src) DEFINE(__UVISION_VERSION) OBJECT(.\out\Release\main.o)
