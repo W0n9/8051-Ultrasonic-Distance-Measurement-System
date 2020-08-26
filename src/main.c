@@ -585,6 +585,7 @@ void main()
         }
         else if (!Mode_2)
         {
+            PreLength *= 2;
             DisplayLength(PreLength);
             if (PreLength <= 200 && PreLength >= 100)
             {
