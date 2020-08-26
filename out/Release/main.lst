@@ -1,4 +1,4 @@
-C51 COMPILER V9.59.0.0   MAIN                                                              08/25/2020 16:25:01 PAGE 1   
+C51 COMPILER V9.59.0.0   MAIN                                                              08/26/2020 10:57:08 PAGE 1   
 
 
 C51 COMPILER V9.59.0.0, COMPILATION OF MODULE MAIN
@@ -62,7 +62,7 @@ line level    source
   52   1          uint8_t i;
   53   1          for (; time > 0; time--)
   54   1          {
-C51 COMPILER V9.59.0.0   MAIN                                                              08/25/2020 16:25:01 PAGE 2   
+C51 COMPILER V9.59.0.0   MAIN                                                              08/26/2020 10:57:08 PAGE 2   
 
   55   2              for (i = 0; i < 124; i++)
   56   2              {
@@ -126,7 +126,7 @@ line level    source
  114   2          case 2:
  115   2              lcd_wdata('2');
  116   2              delayms(2);
-C51 COMPILER V9.59.0.0   MAIN                                                              08/25/2020 16:25:01 PAGE 3   
+C51 COMPILER V9.59.0.0   MAIN                                                              08/26/2020 10:57:08 PAGE 3   
 
  117   2              break;
  118   2          case 3:
@@ -190,7 +190,7 @@ line level    source
  176          //  //lcd_display(10,W1);
  177          //  //lcd_display(9,':');
  178          //  // lcd_display(8,1);
-C51 COMPILER V9.59.0.0   MAIN                                                              08/25/2020 16:25:01 PAGE 4   
+C51 COMPILER V9.59.0.0   MAIN                                                              08/26/2020 10:57:08 PAGE 4   
 
  179          //  // lcd_display(7,W3);
  180          //    // lcd_display(6,':');
@@ -254,7 +254,7 @@ line level    source
  238   1          // TCON = 0X00;
  239   1          TH0 = 0;
  240   1          TL0 = 0;
-C51 COMPILER V9.59.0.0   MAIN                                                              08/25/2020 16:25:01 PAGE 5   
+C51 COMPILER V9.59.0.0   MAIN                                                              08/26/2020 10:57:08 PAGE 5   
 
  241   1      
  242   1          // Module Start
@@ -318,7 +318,7 @@ line level    source
                       Trig_Pin = 1;
                   }
                   Trig_Pin = 0;
-C51 COMPILER V9.59.0.0   MAIN                                                              08/25/2020 16:25:01 PAGE 6   
+C51 COMPILER V9.59.0.0   MAIN                                                              08/26/2020 10:57:08 PAGE 6   
 
               
                   while (1)
@@ -382,7 +382,7 @@ line level    source
  362   1      
  363   1          number = number % 100;
  364   1          Decade = number / 10;
-C51 COMPILER V9.59.0.0   MAIN                                                              08/25/2020 16:25:01 PAGE 7   
+C51 COMPILER V9.59.0.0   MAIN                                                              08/26/2020 10:57:08 PAGE 7   
 
  365   1      
  366   1          Unit = number % 10;
@@ -446,7 +446,7 @@ line level    source
  423          void Delay20ms() //@11.0592MHz
  424          {
  425   1          uint8_t i, j;
-C51 COMPILER V9.59.0.0   MAIN                                                              08/25/2020 16:25:01 PAGE 8   
+C51 COMPILER V9.59.0.0   MAIN                                                              08/26/2020 10:57:08 PAGE 8   
 
  426   1      
  427   1          i = 36;
@@ -510,7 +510,7 @@ line level    source
  484          {
  485   1          uint8_t tempj;
  486   1          uint8_t greater_than_1m[] = {0xFD, 0x00, 0x11, 0x01, 0x01, 0x73, 0x6F, 0x75, 0x6E, 0x64, 0x6B, 0xB4, 0
-C51 COMPILER V9.59.0.0   MAIN                                                              08/25/2020 16:25:01 PAGE 9   
+C51 COMPILER V9.59.0.0   MAIN                                                              08/26/2020 10:57:08 PAGE 9   
 
              -xF3, 0xD3, 0xDA, 0xD2, 0xBB, 0xC3, 0xD7, 0xD7};
  487   1          Delay20ms();
@@ -574,7 +574,7 @@ line level    source
  543   2      
  544   2              // if (PreLength > 200)
  545   2              // {
-C51 COMPILER V9.59.0.0   MAIN                                                              08/25/2020 16:25:01 PAGE 10  
+C51 COMPILER V9.59.0.0   MAIN                                                              08/26/2020 10:57:08 PAGE 10  
 
  546   2              //     for (i = 0; i < 1; i++)
  547   2              //     { // greater_than_2m();
@@ -618,34 +618,35 @@ line level    source
  585   3              }
  586   2              else if (!Mode_2)
  587   2              {
- 588   3                  DisplayLength(PreLength);
- 589   3                  if (PreLength <= 200 && PreLength >= 100)
- 590   3                  {
- 591   4                      greater_than_1m();
- 592   4                  }
- 593   3              }
- 594   2              else if (!Mode_3)
- 595   2              {
- 596   3                  DisplayLength(PreLength);
- 597   3                  if (PreLength <= 100)
- 598   3                  {
- 599   4                      less_than_1m();
- 600   4                  }
- 601   3              }
- 602   2      
- 603   2              // debug = PreLength / 1000;
- 604   2              // UARTSnd(PreLength);
- 605   2              // Delay5s();
- 606   2      
- 607   2              // for (tempa = 0; tempa < 200; tempa++)   //  refresh for 200 cycles
-C51 COMPILER V9.59.0.0   MAIN                                                              08/25/2020 16:25:01 PAGE 11  
+ 588   3                  PreLength *= 2;
+ 589   3                  DisplayLength(PreLength);
+ 590   3                  if (PreLength <= 200 && PreLength >= 100)
+ 591   3                  {
+ 592   4                      greater_than_1m();
+ 593   4                  }
+ 594   3              }
+ 595   2              else if (!Mode_3)
+ 596   2              {
+ 597   3                  DisplayLength(PreLength);
+ 598   3                  if (PreLength <= 100)
+ 599   3                  {
+ 600   4                      less_than_1m();
+ 601   4                  }
+ 602   3              }
+ 603   2      
+ 604   2              // debug = PreLength / 1000;
+ 605   2              // UARTSnd(PreLength);
+ 606   2              // Delay5s();
+ 607   2      
+C51 COMPILER V9.59.0.0   MAIN                                                              08/26/2020 10:57:08 PAGE 11  
 
- 608   2              // {
- 609   2              //     DisplayLength(PreLength);
- 610   2              // }
- 611   2          }
- 612   1      }
-C51 COMPILER V9.59.0.0   MAIN                                                              08/25/2020 16:25:01 PAGE 12  
+ 608   2              // for (tempa = 0; tempa < 200; tempa++)   //  refresh for 200 cycles
+ 609   2              // {
+ 610   2              //     DisplayLength(PreLength);
+ 611   2              // }
+ 612   2          }
+ 613   1      }
+C51 COMPILER V9.59.0.0   MAIN                                                              08/26/2020 10:57:08 PAGE 12  
 
 ASSEMBLY LISTING OF GENERATED OBJECT CODE
 
@@ -709,7 +710,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
                                            ; SOURCE LINE # 71
 0005 C2B4              CLR     lcden
                                            ; SOURCE LINE # 72
-C51 COMPILER V9.59.0.0   MAIN                                                              08/25/2020 16:25:01 PAGE 13  
+C51 COMPILER V9.59.0.0   MAIN                                                              08/26/2020 10:57:08 PAGE 13  
 
 0007 22                RET     
              ; FUNCTION _lcd_wcom (END)
@@ -773,7 +774,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 000D 900000      R     MOV     DPTR,#?C0088
 0010 F8                MOV     R0,A
 0011 28                ADD     A,R0
-C51 COMPILER V9.59.0.0   MAIN                                                              08/25/2020 16:25:01 PAGE 14  
+C51 COMPILER V9.59.0.0   MAIN                                                              08/26/2020 10:57:08 PAGE 14  
 
 0012 28                ADD     A,R0
 0013 73                JMP     @A+DPTR
@@ -837,7 +838,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
                                            ; SOURCE LINE # 129
 0048 8012              SJMP    ?C0098
                                            ; SOURCE LINE # 130
-C51 COMPILER V9.59.0.0   MAIN                                                              08/25/2020 16:25:01 PAGE 15  
+C51 COMPILER V9.59.0.0   MAIN                                                              08/26/2020 10:57:08 PAGE 15  
 
 004A         ?C0018:
                                            ; SOURCE LINE # 131
@@ -901,7 +902,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 000B 7F4D              MOV     R7,#04DH
 000D 120000      R     LCALL   _lcd_wdata
                                            ; SOURCE LINE # 158
-C51 COMPILER V9.59.0.0   MAIN                                                              08/25/2020 16:25:01 PAGE 16  
+C51 COMPILER V9.59.0.0   MAIN                                                              08/26/2020 10:57:08 PAGE 16  
 
 0010 7F02              MOV     R7,#02H
 0012 120000      R     LCALL   _delayms
@@ -965,7 +966,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0003 FF                MOV     R7,A
              ; FUNCTION _UARTSnd (BEGIN)
                                            ; SOURCE LINE # 200
-C51 COMPILER V9.59.0.0   MAIN                                                              08/25/2020 16:25:01 PAGE 17  
+C51 COMPILER V9.59.0.0   MAIN                                                              08/26/2020 10:57:08 PAGE 17  
 
 ;---- Variable 'dat' assigned to Register 'R7' ----
                                            ; SOURCE LINE # 201
@@ -1029,7 +1030,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0030 120000      E     LCALL   ?C?LSHL
 0033 8F00        R     MOV     PresentTime+03H,R7
 0035 8E00        R     MOV     PresentTime+02H,R6
-C51 COMPILER V9.59.0.0   MAIN                                                              08/25/2020 16:25:01 PAGE 18  
+C51 COMPILER V9.59.0.0   MAIN                                                              08/26/2020 10:57:08 PAGE 18  
 
 0037 8D00        R     MOV     PresentTime+01H,R5
 0039 8C00        R     MOV     PresentTime,R4
@@ -1074,10 +1075,10 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
              ; FUNCTION MeterByTrig (END)
 
              ; FUNCTION L?0103 (BEGIN)
-0000 AF00        R     MOV     R7,PreLength+03H
-0002 AE00        R     MOV     R6,PreLength+02H
-0004 AD00        R     MOV     R5,PreLength+01H
-0006 AC00        R     MOV     R4,PreLength
+0000 8F00        R     MOV     PreLength+03H,R7
+0002 8E00        R     MOV     PreLength+02H,R6
+0004 8D00        R     MOV     PreLength+01H,R5
+0006 8C00        R     MOV     PreLength,R4
              ; FUNCTION _DisplayLength (BEGIN)
                                            ; SOURCE LINE # 353
 0008 8F00        R     MOV     number+03H,R7
@@ -1093,7 +1094,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0016 FC                MOV     R4,A
 0017 AB00        R     MOV     R3,number+03H
 0019 AA00        R     MOV     R2,number+02H
-C51 COMPILER V9.59.0.0   MAIN                                                              08/25/2020 16:25:01 PAGE 19  
+C51 COMPILER V9.59.0.0   MAIN                                                              08/26/2020 10:57:08 PAGE 19  
 
 001B A900        R     MOV     R1,number+01H
 001D A800        R     MOV     R0,number
@@ -1157,7 +1158,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0077 AD00        R     MOV     R5,number+01H
 0079 AC00        R     MOV     R4,number
 007B 120000      E     LCALL   ?C?ULDIV
-C51 COMPILER V9.59.0.0   MAIN                                                              08/25/2020 16:25:01 PAGE 20  
+C51 COMPILER V9.59.0.0   MAIN                                                              08/26/2020 10:57:08 PAGE 20  
 
 ;---- Variable 'Unit' assigned to Register 'R7' ----
                                            ; SOURCE LINE # 368
@@ -1221,7 +1222,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
              ; FUNCTION Delay5s (END)
 
              ; FUNCTION Delay1s (BEGIN)
-C51 COMPILER V9.59.0.0   MAIN                                                              08/25/2020 16:25:01 PAGE 21  
+C51 COMPILER V9.59.0.0   MAIN                                                              08/26/2020 10:57:08 PAGE 21  
 
                                            ; SOURCE LINE # 454
                                            ; SOURCE LINE # 455
@@ -1285,7 +1286,7 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 
              ; FUNCTION less_than_1m (BEGIN)
                                            ; SOURCE LINE # 495
-C51 COMPILER V9.59.0.0   MAIN                                                              08/25/2020 16:25:01 PAGE 22  
+C51 COMPILER V9.59.0.0   MAIN                                                              08/26/2020 10:57:08 PAGE 22  
 
                                            ; SOURCE LINE # 496
                                            ; SOURCE LINE # 498
@@ -1346,10 +1347,10 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0020 8D00        R     MOV     PreLength+01H,R5
 0022 8C00        R     MOV     PreLength,R4
                                            ; SOURCE LINE # 569
-0024 20915C            JB      Mode_1,?C0072
+0024 209154            JB      Mode_1,?C0072
                                            ; SOURCE LINE # 570
                                            ; SOURCE LINE # 571
-C51 COMPILER V9.59.0.0   MAIN                                                              08/25/2020 16:25:01 PAGE 23  
+C51 COMPILER V9.59.0.0   MAIN                                                              08/26/2020 10:57:08 PAGE 23  
 
 0027 E4                CLR     A
 0028 120000      E     LCALL   ?C?FCASTL
@@ -1359,142 +1360,153 @@ ASSEMBLY LISTING OF GENERATED OBJECT CODE
 0031 7840              MOV     R0,#040H
 0033 120000      E     LCALL   ?C?FPMUL
 0036 120000      E     LCALL   ?C?CASTF
-0039 8F00        R     MOV     PreLength+03H,R7
-003B 8E00        R     MOV     PreLength+02H,R6
-003D 8D00        R     MOV     PreLength+01H,R5
-003F 8C00        R     MOV     PreLength,R4
                                            ; SOURCE LINE # 572
-0041 120000      R     LCALL   _DisplayLength
+0039 120000      R     LCALL   L?0103
                                            ; SOURCE LINE # 573
-0044 E4                CLR     A
-0045 7FC8              MOV     R7,#0C8H
-0047 FE                MOV     R6,A
-0048 FD                MOV     R5,A
-0049 FC                MOV     R4,A
-004A AB00        R     MOV     R3,PreLength+03H
-004C AA00        R     MOV     R2,PreLength+02H
-004E A900        R     MOV     R1,PreLength+01H
-0050 A800        R     MOV     R0,PreLength
-0052 D3                SETB    C
-0053 120000      E     LCALL   ?C?ULCMP
-0056 40C1              JC      ?C0070
+003C E4                CLR     A
+003D 7FC8              MOV     R7,#0C8H
+003F FE                MOV     R6,A
+0040 FD                MOV     R5,A
+0041 FC                MOV     R4,A
+0042 AB00        R     MOV     R3,PreLength+03H
+0044 AA00        R     MOV     R2,PreLength+02H
+0046 A900        R     MOV     R1,PreLength+01H
+0048 A800        R     MOV     R0,PreLength
+004A D3                SETB    C
+004B 120000      E     LCALL   ?C?ULCMP
+004E 40C9              JC      ?C0070
                                            ; SOURCE LINE # 574
                                            ; SOURCE LINE # 575
 ;---- Variable 'i' assigned to Register 'R5' ----
-0058 E4                CLR     A
-0059 FD                MOV     R5,A
-005A         ?C0074:
-005A ED                MOV     A,R5
-005B C3                CLR     C
-005C 9401              SUBB    A,#01H
-005E 7480              MOV     A,#080H
-0060 9480              SUBB    A,#080H
-0062 501A              JNC     ?C0075
+0050 E4                CLR     A
+0051 FD                MOV     R5,A
+0052         ?C0074:
+0052 ED                MOV     A,R5
+0053 C3                CLR     C
+0054 9401              SUBB    A,#01H
+0056 7480              MOV     A,#080H
+0058 9480              SUBB    A,#080H
+005A 501A              JNC     ?C0075
                                            ; SOURCE LINE # 576
                                            ; SOURCE LINE # 577
-0064 120000      R     LCALL   Delay20ms
+005C 120000      R     LCALL   Delay20ms
                                            ; SOURCE LINE # 578
 ;---- Variable 'tempj' assigned to Register 'R6' ----
-0067 E4                CLR     A
-0068 FE                MOV     R6,A
-0069         ?C0077:
-0069 EE                MOV     A,R6
-006A C3                CLR     C
-006B 9414              SUBB    A,#014H
-006D 7480              MOV     A,#080H
-006F 9480              SUBB    A,#080H
-0071 5008              JNC     ?C0076
+005F E4                CLR     A
+0060 FE                MOV     R6,A
+0061         ?C0077:
+0061 EE                MOV     A,R6
+0062 C3                CLR     C
+0063 9414              SUBB    A,#014H
+0065 7480              MOV     A,#080H
+0067 9480              SUBB    A,#080H
+0069 5008              JNC     ?C0076
                                            ; SOURCE LINE # 579
                                            ; SOURCE LINE # 580
-0073 7400        R     MOV     A,#LOW greater_than_2m
-0075 120000      R     LCALL   L?0102
+006B 7400        R     MOV     A,#LOW greater_than_2m
+006D 120000      R     LCALL   L?0102
                                            ; SOURCE LINE # 581
-0078 0E                INC     R6
-0079 80EE              SJMP    ?C0077
+0070 0E                INC     R6
+0071 80EE              SJMP    ?C0077
                                            ; SOURCE LINE # 582
-007B         ?C0076:
-C51 COMPILER V9.59.0.0   MAIN                                                              08/25/2020 16:25:01 PAGE 24  
-
-007B 0D                INC     R5
-007C 80DC              SJMP    ?C0074
-007E         ?C0075:
+0073         ?C0076:
+0073 0D                INC     R5
+0074 80DC              SJMP    ?C0074
+0076         ?C0075:
                                            ; SOURCE LINE # 583
-007E 120000      R     LCALL   Delay5s
+C51 COMPILER V9.59.0.0   MAIN                                                              08/26/2020 10:57:08 PAGE 24  
+
+0076 120000      R     LCALL   Delay5s
                                            ; SOURCE LINE # 584
                                            ; SOURCE LINE # 585
-0081 8096              SJMP    ?C0070
-0083         ?C0072:
+0079 809E              SJMP    ?C0070
+007B         ?C0072:
                                            ; SOURCE LINE # 586
-0083 209231            JB      Mode_2,?C0081
+007B 209242            JB      Mode_2,?C0081
                                            ; SOURCE LINE # 587
                                            ; SOURCE LINE # 588
-0086 120000      R     LCALL   L?0103
+007E AF00        R     MOV     R7,PreLength+03H
+0080 AE00        R     MOV     R6,PreLength+02H
+0082 AD00        R     MOV     R5,PreLength+01H
+0084 AC00        R     MOV     R4,PreLength
+0086 E4                CLR     A
+0087 7B02              MOV     R3,#02H
+0089 FA                MOV     R2,A
+008A F9                MOV     R1,A
+008B F8                MOV     R0,A
+008C 120000      E     LCALL   ?C?LMUL
                                            ; SOURCE LINE # 589
-0089 E4                CLR     A
-008A 7FC8              MOV     R7,#0C8H
-008C FE                MOV     R6,A
-008D FD                MOV     R5,A
-008E FC                MOV     R4,A
-008F AB00        R     MOV     R3,PreLength+03H
-0091 AA00        R     MOV     R2,PreLength+02H
-0093 A900        R     MOV     R1,PreLength+01H
-0095 A800        R     MOV     R0,PreLength
-0097 D3                SETB    C
-0098 120000      E     LCALL   ?C?ULCMP
-009B 4003              JC      $ + 5H
-009D 020000      R     LJMP    ?C0070
-00A0 E4                CLR     A
-00A1 7F64              MOV     R7,#064H
-00A3 FE                MOV     R6,A
-00A4 FD                MOV     R5,A
-00A5 FC                MOV     R4,A
-00A6 A800        R     MOV     R0,PreLength
-00A8 C3                CLR     C
-00A9 120000      E     LCALL   ?C?ULCMP
-00AC 5003              JNC     $ + 5H
-00AE 020000      R     LJMP    ?C0070
+008F 120000      R     LCALL   L?0103
                                            ; SOURCE LINE # 590
+0092 E4                CLR     A
+0093 7FC8              MOV     R7,#0C8H
+0095 FE                MOV     R6,A
+0096 FD                MOV     R5,A
+0097 FC                MOV     R4,A
+0098 AB00        R     MOV     R3,PreLength+03H
+009A AA00        R     MOV     R2,PreLength+02H
+009C A900        R     MOV     R1,PreLength+01H
+009E A800        R     MOV     R0,PreLength
+00A0 D3                SETB    C
+00A1 120000      E     LCALL   ?C?ULCMP
+00A4 4003              JC      $ + 5H
+00A6 020000      R     LJMP    ?C0070
+00A9 E4                CLR     A
+00AA 7F64              MOV     R7,#064H
+00AC FE                MOV     R6,A
+00AD FD                MOV     R5,A
+00AE FC                MOV     R4,A
+00AF A800        R     MOV     R0,PreLength
+00B1 C3                CLR     C
+00B2 120000      E     LCALL   ?C?ULCMP
+00B5 5003              JNC     $ + 5H
+00B7 020000      R     LJMP    ?C0070
                                            ; SOURCE LINE # 591
-00B1 120000      R     LCALL   greater_than_1m
                                            ; SOURCE LINE # 592
+00BA 120000      R     LCALL   greater_than_1m
                                            ; SOURCE LINE # 593
-00B4 020000      R     LJMP    ?C0070
-00B7         ?C0081:
                                            ; SOURCE LINE # 594
-00B7 309303            JNB     Mode_3,$ + 6H
-00BA 020000      R     LJMP    ?C0070
+00BD 020000      R     LJMP    ?C0070
+00C0         ?C0081:
                                            ; SOURCE LINE # 595
+00C0 309303            JNB     Mode_3,$ + 6H
+00C3 020000      R     LJMP    ?C0070
                                            ; SOURCE LINE # 596
-00BD 120000      R     LCALL   L?0103
                                            ; SOURCE LINE # 597
-00C0 E4                CLR     A
-00C1 7F64              MOV     R7,#064H
-00C3 FE                MOV     R6,A
-00C4 FD                MOV     R5,A
-00C5 FC                MOV     R4,A
-00C6 AB00        R     MOV     R3,PreLength+03H
-00C8 AA00        R     MOV     R2,PreLength+02H
-00CA A900        R     MOV     R1,PreLength+01H
-00CC A800        R     MOV     R0,PreLength
-00CE D3                SETB    C
-C51 COMPILER V9.59.0.0   MAIN                                                              08/25/2020 16:25:01 PAGE 25  
+00C6 AF00        R     MOV     R7,PreLength+03H
+00C8 AE00        R     MOV     R6,PreLength+02H
+00CA AD00        R     MOV     R5,PreLength+01H
+00CC AC00        R     MOV     R4,PreLength
+00CE 120000      R     LCALL   _DisplayLength
+C51 COMPILER V9.59.0.0   MAIN                                                              08/26/2020 10:57:08 PAGE 25  
 
-00CF 120000      E     LCALL   ?C?ULCMP
-00D2 4003              JC      $ + 5H
-00D4 020000      R     LJMP    ?C0070
                                            ; SOURCE LINE # 598
+00D1 E4                CLR     A
+00D2 7F64              MOV     R7,#064H
+00D4 FE                MOV     R6,A
+00D5 FD                MOV     R5,A
+00D6 FC                MOV     R4,A
+00D7 AB00        R     MOV     R3,PreLength+03H
+00D9 AA00        R     MOV     R2,PreLength+02H
+00DB A900        R     MOV     R1,PreLength+01H
+00DD A800        R     MOV     R0,PreLength
+00DF D3                SETB    C
+00E0 120000      E     LCALL   ?C?ULCMP
+00E3 4003              JC      $ + 5H
+00E5 020000      R     LJMP    ?C0070
                                            ; SOURCE LINE # 599
-00D7 120000      R     LCALL   less_than_1m
                                            ; SOURCE LINE # 600
+00E8 120000      R     LCALL   less_than_1m
                                            ; SOURCE LINE # 601
-                                           ; SOURCE LINE # 611
-00DA 020000      R     LJMP    ?C0070
+                                           ; SOURCE LINE # 602
+                                           ; SOURCE LINE # 612
+00EB 020000      R     LJMP    ?C0070
              ; FUNCTION main (END)
 
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    883    ----
+   CODE SIZE        =    900    ----
    CONSTANT SIZE    =     54    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

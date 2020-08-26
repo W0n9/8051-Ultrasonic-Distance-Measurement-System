@@ -1,1 +1,0 @@
-.\src\main.c CODE PRINT (.\out\Keil_C51\main.lst) OMF2 TABS (2) OPTIMIZE (8,SPEED) SMALL ROM (LARGE) INCDIR(.\dependence;.\src) DEFINE(__UVISION_VERSION) OBJECT(.\out\Keil_C51\main.o)
